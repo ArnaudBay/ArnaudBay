@@ -1,0 +1,123 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 0 0% 96%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 4%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 4%;
+    --muted-foreground: 220 9% 65%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 72% 35%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 0 0% 96%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 0 0% 96%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 0 0% 96%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "DM Mono", monospace;
+    cursor: default;
+    background-color: #000000;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply min-h-screen bg-background text-foreground;
+  }
+
+  .page-container {
+    @apply mx-auto w-full max-w-[1200px] px-6 md:px-8;
+  }
+
+  .section-block {
+    @apply py-20 md:py-28;
+  }
+
+  .editorial-separator {
+    @apply my-20 flex items-center justify-center;
+  }
+
+  .editorial-cross {
+    @apply text-3xl leading-none text-[#333333] md:text-4xl;
+    font-family: "DM Mono", monospace;
+  }
+
+  .nav-link {
+    @apply text-[11px] uppercase tracking-[0.24em] text-foreground/80 hover:text-foreground;
+  }
+
+  .tag-label {
+    @apply text-[11px] uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  .section-copy {
+    @apply text-sm leading-7 text-muted-foreground md:text-base;
+  }
+
+  .project-tag {
+    @apply inline-flex items-center rounded-full border border-border px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-foreground/90;
+  }
+
+  .orbit-shell {
+    @apply relative mx-auto flex h-[280px] w-[280px] items-center justify-center md:h-[340px] md:w-[340px];
+  }
+
+  .orbit-shell::before {
+    content: "";
+    @apply absolute inset-0 rounded-full border-2 border-foreground;
+  }
+
+  .orbit-dot-ring {
+    @apply absolute inset-[-14px] animate-orbit rounded-full;
+  }
+
+  .orbit-dot-ring::after {
+    content: "";
+    @apply absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-foreground;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.14);
+  }
+}
