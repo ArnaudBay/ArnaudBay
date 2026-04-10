@@ -54,6 +54,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -104,6 +105,7 @@
 @layer components {
   .page-shell {
     @apply min-h-screen bg-background text-foreground;
+    overflow-x: hidden;
   }
 
   .page-container {
@@ -149,7 +151,7 @@
   }
 
   .orbit-shell {
-    @apply relative mx-auto flex h-[280px] w-[280px] items-center justify-center md:h-[340px] md:w-[340px];
+    @apply relative mx-auto flex h-[220px] w-[220px] items-center justify-center sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px];
   }
 
   .orbit-shell::before {

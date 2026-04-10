@@ -55,7 +55,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => (
               alt="Arnaud portrait"
               width={340}
               height={340}
-              className="h-[280px] w-[280px] rounded-full border-2 border-foreground object-cover grayscale md:h-[340px] md:w-[340px]"
+              className="h-[220px] w-[220px] rounded-full border-2 border-foreground object-cover grayscale sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px]"
             />
           </div>
         </motion.div>
