@@ -61,12 +61,12 @@
     margin: 0;
     font-family: "DM Mono", monospace;
     cursor: default;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  *,
-  *::before,
-  *::after {
-    transition-property: background-color, border-color, color, box-shadow;
+  .page-shell,
+  .page-shell *:not(header):not(header *) {
+    transition-property: background-color, border-color, color;
     transition-duration: 0.3s;
     transition-timing-function: ease;
   }
@@ -168,32 +168,25 @@
   }
 
   .theme-toggle {
-    position: relative;
-    height: 1.5rem;
-    width: 1.5rem;
+    display: block;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
     border-radius: 9999px;
-    transition-property: all;
-    transition-duration: 300ms;
-    background-color: white;
     border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
-
   .theme-toggle:focus {
     outline: none;
   }
-  .theme-toggle::-moz-focus-inner {
-    border: none;
+  .theme-toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
-  .theme-toggle::after {
-    content: "";
-    @apply absolute inset-[3px] rounded-full transition-all duration-300;
-    transform: scale(0);
-  }
-  .theme-toggle:not(.is-light)::after {
-    @apply bg-black;
-  }
-  .theme-toggle.is-light::after {
-    @apply bg-white;
-    transform: scale(1);
+
+  .light .editorial-cross {
+    @apply text-[#bbbbbb];
   }
 }
