@@ -22,7 +22,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -43,7 +43,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
         className={
           scrolled
             ? `fixed inset-x-0 top-0 z-50 border-b border-foreground/10 shadow-[0_8px_22px_rgba(0,0,0,0.18)] backdrop-blur-md ${theme === "dark" ? "bg-black/35 supports-[backdrop-filter]:bg-black/22" : "bg-white/70 supports-[backdrop-filter]:bg-white/60"}`
-            : "fixed inset-x-0 top-0 z-50 bg-transparent"
+            : `fixed inset-x-0 top-0 z-50 ${theme === "dark" ? "bg-black/0" : "bg-white/0"}`
         }
       >
         <div className="page-container flex h-16 items-center justify-between gap-4 sm:h-20">
@@ -58,12 +58,13 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
           </nav>
 
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={onThemeToggle}
-              className={`theme-toggle ${theme === "light" ? "is-light" : ""}`}
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            />
+                <button
+                  type="button"
+                  onClick={onThemeToggle}
+                  className="theme-toggle"
+                  style={{ backgroundColor: theme === "light" ? "black" : "white", border: "none", width: "20px", height: "20px" }}
+                  aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                />
 
             <div className="hidden items-center gap-3 lg:flex">
               <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
@@ -72,7 +73,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             </div>
 
             <button type="button" onClick={() => setOpen(true)} className="text-foreground lg:hidden" aria-label="Open menu">
-              <Menu size={24} />
+              <Menu size={30} />
             </button>
           </div>
         </div>
@@ -93,7 +94,8 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
                 <button
                   type="button"
                   onClick={onThemeToggle}
-                  className={`theme-toggle ${theme === "light" ? "is-light" : ""}`}
+                  className="theme-toggle"
+                  style={{ backgroundColor: theme === "light" ? "black" : "white", border: "none", width: "20px", height: "20px" }}
                   aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
                 />
                 <button type="button" onClick={() => setOpen(false)} className="text-foreground" aria-label="Close menu">
