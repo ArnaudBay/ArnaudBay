@@ -1,1 +1,28 @@
 node_modules
+dist
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE / Editor
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude Code
+CLAUDE.md
+
+# Logs
+*.log
+npm-debug.log*
+
+# Vite
+*.local
