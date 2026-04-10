@@ -57,19 +57,20 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
-                <button
-                  type="button"
-                  onClick={onThemeToggle}
-                  className="theme-toggle"
-                  style={{ backgroundColor: theme === "light" ? "black" : "white", border: "none", width: "20px", height: "20px" }}
-                  aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-                />
-
-            <div className="hidden items-center gap-3 lg:flex">
-              <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
-              <span className="text-foreground/30">/</span>
-              <button type="button" onClick={() => onLanguageChange("en")} className={language === "en" ? "nav-link text-foreground" : "nav-link"}>EN</button>
+            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={onThemeToggle}
+                className="theme-toggle"
+                style={{ backgroundColor: theme === "light" ? "black" : "white", border: "none", width: "20px", height: "20px", minWidth: "20px" }}
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              />
+              <div className="hidden items-center gap-3 lg:flex">
+                <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
+                <span className="text-foreground/30">/</span>
+                <button type="button" onClick={() => onLanguageChange("en")} className={language === "en" ? "nav-link text-foreground" : "nav-link"}>EN</button>
+              </div>
             </div>
 
             <button type="button" onClick={() => setOpen(true)} className="text-foreground lg:hidden" aria-label="Open menu">
