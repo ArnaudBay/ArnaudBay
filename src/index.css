@@ -151,7 +151,7 @@
   }
 
   .orbit-shell {
-    @apply relative mx-auto flex h-[220px] w-[220px] items-center justify-center sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px];
+    @apply relative mx-auto flex h-[250px] w-[250px] items-center justify-center sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px];
   }
 
   .orbit-shell::before {
