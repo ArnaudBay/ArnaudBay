@@ -52,7 +52,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${headerBg}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 ${headerBg}`}>
         <div className={`page-container flex items-center justify-between ${NAV_H}`}>
           <a href="#top" className="font-heading text-[2.2rem] leading-none text-foreground sm:text-[2.9rem]">A.</a>
 

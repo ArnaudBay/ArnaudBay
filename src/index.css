@@ -64,8 +64,10 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  .page-shell,
-  .page-shell *:not(header):not(header *) {
+  .page-shell > main,
+  .page-shell > main *,
+  .page-shell > footer,
+  .page-shell > footer * {
     transition-property: background-color, border-color, color;
     transition-duration: 0.3s;
     transition-timing-function: ease;
@@ -123,6 +125,15 @@
 
   .nav-link {
     @apply text-[11px] uppercase tracking-[0.24em] text-foreground/80 hover:text-foreground;
+    transition: none;
+  }
+
+  header,
+  header * {
+    transition-property: none !important;
+  }
+  header {
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s !important;
   }
 
   .tag-label {
@@ -175,8 +186,10 @@
     border-radius: 9999px;
     border: none;
     padding: 0;
+    margin: 0;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: none;
+    -webkit-tap-highlight-color: transparent;
   }
   .theme-toggle:focus {
     outline: none;
