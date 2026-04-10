@@ -27,18 +27,18 @@ const copy = {
 };
 
 const Hero = ({ language }: { language: SiteLanguage }) => (
-  <motion.section id="top" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-block pt-36">
+  <motion.section id="top" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-block pt-28 sm:pt-36">
     <div className="page-container">
-      <div className="grid items-center gap-16 lg:grid-cols-[minmax(0,3fr)_minmax(320px,2fr)]">
+      <div className="grid items-center gap-10 sm:gap-16 lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <motion.p variants={fadeUp} className="tag-label mb-6">{copy[language].role}</motion.p>
-          <motion.h1 variants={fadeUp} className="mb-8 text-[56px] leading-[0.92] text-foreground md:text-[80px] xl:text-[96px]">Arnaud.</motion.h1>
-          <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 md:text-xl">
+          <motion.p variants={fadeUp} className="tag-label mb-4 sm:mb-6">{copy[language].role}</motion.p>
+          <motion.h1 variants={fadeUp} className="mb-6 text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] xl:text-[96px]">Arnaud.</motion.h1>
+          <motion.p variants={fadeUp} className="max-w-xl text-base leading-8 text-foreground/88 sm:text-lg sm:leading-9 md:text-xl">
             {copy[language].line}
             <span className="italic text-foreground">{copy[language].highlight}</span>
             {copy[language].tail}
           </motion.p>
-          <motion.div variants={staggerContainer} className="mt-10 flex items-center gap-5">
+          <motion.div variants={staggerContainer} className="mt-8 flex items-center gap-5 sm:mt-10">
             {socials.map(({ icon: Icon, href, label }) => (
               <motion.a key={label} variants={fadeUp} href={href} target="_blank" rel="noreferrer" aria-label={label} className="text-foreground transition-colors hover:opacity-75">
                 <Icon size={20} />

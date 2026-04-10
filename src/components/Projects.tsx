@@ -62,20 +62,20 @@ const Projects = ({ language }: { language: SiteLanguage }) => (
         </h2>
         <span className="editorial-cross">+</span>
       </div>
-      <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
         {projects.map((project, index) => {
           const description = language === "fr" ? project.descriptionFr : project.descriptionEn;
           const badge = language === "fr" ? project.badgeFr : project.badgeEn;
           return (
-            <motion.article key={project.title} variants={fadeScale} className="group overflow-hidden border border-border bg-card transition-colors duration-200 hover:border-foreground/40">
-              <div className="aspect-[16/10] overflow-hidden border-b border-border bg-black">
+            <motion.article key={project.title} variants={fadeScale} className="group overflow-hidden border border-border bg-card hover:border-foreground/40">
+              <div className="aspect-[16/10] overflow-hidden border-b border-border bg-muted">
                 <img src={project.image} alt={project.title} className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0" loading="lazy" width={1200} height={600} />
               </div>
-              <div className="space-y-4 p-5">
+              <div className="space-y-3 p-4 sm:space-y-4 sm:p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="mb-2 font-body text-[11px] uppercase tracking-[0.2em] text-foreground/60">{String(index + 1).padStart(2, "0")}</p>
-                    <h3 className="text-2xl text-foreground transition-colors duration-200 group-hover:text-foreground/75">{project.title}</h3>
+                    <p className="mb-1.5 font-body text-[11px] uppercase tracking-[0.2em] text-foreground/60 sm:mb-2">{String(index + 1).padStart(2, "0")}</p>
+                    <h3 className="text-xl text-foreground sm:text-2xl">{project.title}</h3>
                   </div>
                   {project.url ? (
                     <a href={project.url} target="_blank" rel="noreferrer" aria-label={project.title} className="mt-1 text-foreground/80 transition-all duration-200 group-hover:translate-x-1 group-hover:text-foreground/75">

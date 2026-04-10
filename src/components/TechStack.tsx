@@ -84,17 +84,17 @@ const TechStack = ({ language }: { language: SiteLanguage }) => (
             <motion.h3 variants={fadeUp} className="font-heading text-3xl text-foreground">
               {language === "fr" ? group.titleFr : group.titleEn} <span className="text-foreground">()</span>
             </motion.h3>
-            <motion.div variants={staggerContainer} className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4">
+            <motion.div variants={staggerContainer} className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-4">
               {group.items.map(({ name, iconSrc, icon: Icon, invert }) => (
-                <motion.div key={name} variants={fadeScale} className="group flex min-h-[124px] flex-col items-center justify-center gap-3 rounded-sm border border-border bg-card px-3 py-4 transition-colors duration-200 hover:border-foreground/40">
-                  <div className="flex h-12 items-center justify-center">
+                <motion.div key={name} variants={fadeScale} className="group flex min-h-[100px] flex-col items-center justify-center gap-2 rounded-sm border border-border bg-card px-2 py-3 sm:min-h-[124px] sm:gap-3 sm:px-3 sm:py-4 hover:border-foreground/40">
+                  <div className="flex h-10 items-center justify-center sm:h-12">
                     {iconSrc ? (
-                      <img src={iconSrc} alt={name} className={invert ? "h-10 w-10 object-contain invert" : "h-10 w-10 object-contain"} loading="lazy" width={40} height={40} />
+                      <img src={iconSrc} alt={name} className={`h-8 w-8 object-contain sm:h-10 sm:w-10${invert ? " icon-invert" : ""}`} loading="lazy" width={40} height={40} />
                     ) : Icon ? (
-                      <Icon size={36} className="text-foreground" />
+                      <Icon size={32} className="text-foreground sm:h-9 sm:w-9" />
                     ) : null}
                   </div>
-                  <span className="text-center text-[12px] text-foreground/90 group-hover:text-foreground/75">{name}</span>
+                  <span className="text-center text-[11px] text-foreground/90 group-hover:text-foreground/75 sm:text-[12px]">{name}</span>
                 </motion.div>
               ))}
             </motion.div>

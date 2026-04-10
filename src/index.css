@@ -25,6 +25,28 @@
     --ring: 0 0% 96%;
   }
 
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 8%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 220 9% 40%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 8%;
+  }
+
   * {
     @apply border-border;
     box-sizing: border-box;
@@ -39,7 +61,14 @@
     margin: 0;
     font-family: "DM Mono", monospace;
     cursor: default;
-    background-color: #000000;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
   }
 
   h1,
@@ -125,5 +154,32 @@
     content: "";
     @apply absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-foreground;
     box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.14);
+  }
+
+  .light .orbit-dot-ring::after {
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-invert {
+    filter: invert(1);
+  }
+  .light .icon-invert {
+    filter: invert(0);
+  }
+
+  .theme-toggle {
+    @apply relative h-6 w-6 rounded-full border-2 border-foreground/60 transition-all duration-300;
+    background: transparent;
+  }
+  .theme-toggle:hover {
+    @apply border-foreground;
+  }
+  .theme-toggle::after {
+    content: "";
+    @apply absolute inset-[3px] rounded-full bg-foreground transition-all duration-300;
+    transform: scale(0);
+  }
+  .theme-toggle.is-light::after {
+    transform: scale(1);
   }
 }
