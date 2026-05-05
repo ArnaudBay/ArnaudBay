@@ -57,6 +57,7 @@ const Contact = ({ language }: { language: SiteLanguage }) => {
       if (response.ok && data.success) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 2000);
       } else {
         console.error("API error:", data);
         setStatus("error");
