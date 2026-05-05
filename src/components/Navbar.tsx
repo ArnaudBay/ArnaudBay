@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from "./SocialIcons";
 import type { SiteLanguage, SiteTheme } from "../pages/Index";
 
 type Props = {
@@ -11,10 +12,18 @@ type Props = {
 };
 
 const links = [
-  { href: "#about", labelFr: "\u00c0 propos", labelEn: "About" },
+  { href: "#top", labelFr: "Accueil", labelEn: "Home" },
+  { href: "#about", labelFr: "À propos", labelEn: "About" },
   { href: "#skills", labelFr: "Stacks", labelEn: "Skills" },
   { href: "#projects", labelFr: "Projets", labelEn: "Projects" },
   { href: "#contact", labelFr: "Contact", labelEn: "Contact" },
+];
+
+const socials = [
+  { icon: GithubIcon, href: "https://github.com/ArnaudBay", label: "GitHub" },
+  { icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayale-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+  { icon: XIcon, href: "https://x.com/Arnaud_GYL", label: "X" },
+  { icon: InstagramIcon, href: "https://www.instagram.com/arnaud_bayale?igsh=ODJxYTUybW41MXoy", label: "Instagram" },
 ];
 
 const NAV_H = "h-16 sm:h-20";
@@ -54,7 +63,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
     <>
       <header className={`fixed inset-x-0 top-0 z-50 ${headerBg}`}>
         <div className={`page-container flex items-center justify-between ${NAV_H}`}>
-          <a href="#top" className="font-heading text-[2.2rem] leading-none text-foreground sm:text-[2.9rem]">A.</a>
+          <a href="#top" className="font-heading text-[2.4rem] leading-none text-foreground sm:text-[3.1rem]">A.</a>
 
           <nav className="hidden items-center gap-8 lg:flex">
             {links.map((link) => (
@@ -68,7 +77,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             <button
               type="button"
               onClick={onThemeToggle}
-              className="theme-toggle"
+              className="theme-toggle p-1"
               style={{ backgroundColor: theme === "light" ? "black" : "white" }}
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             />
@@ -79,8 +88,8 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
               <button type="button" onClick={() => onLanguageChange("en")} className={language === "en" ? "nav-link text-foreground" : "nav-link"}>EN</button>
             </div>
 
-            <button type="button" onClick={() => setOpen(true)} className="flex items-center justify-center text-foreground lg:hidden" aria-label="Open menu">
-              <Menu size={26} />
+            <button type="button" onClick={() => setOpen(true)} className="flex items-center justify-center p-1 text-foreground lg:hidden" aria-label="Open menu">
+              <Menu size={28} />
             </button>
           </div>
         </div>
@@ -96,17 +105,17 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             className="fixed inset-0 z-[60] bg-background"
           >
             <div className={`page-container flex items-center justify-between ${NAV_H}`}>
-              <span className="font-heading text-[2.2rem] leading-none text-foreground sm:text-[2.9rem]">A.</span>
+              <span className="font-heading text-[2.4rem] leading-none text-foreground sm:text-[3.1rem]">A.</span>
               <div className="flex items-center gap-3 sm:gap-4">
                 <button
                   type="button"
                   onClick={onThemeToggle}
-                  className="theme-toggle"
+                  className="theme-toggle p-1"
                   style={{ backgroundColor: theme === "light" ? "black" : "white" }}
                   aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
                 />
-                <button type="button" onClick={() => setOpen(false)} className="flex items-center justify-center text-foreground" aria-label="Close menu">
-                  <X size={26} />
+                <button type="button" onClick={() => setOpen(false)} className="flex items-center justify-center p-1 text-foreground" aria-label="Close menu">
+                  <X size={28} />
                 </button>
               </div>
             </div>
@@ -136,6 +145,13 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
                 <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
                 <span className="text-foreground/30">/</span>
                 <button type="button" onClick={() => onLanguageChange("en")} className={language === "en" ? "nav-link text-foreground" : "nav-link"}>EN</button>
+              </motion.div>
+              <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} className="mt-8 flex items-center gap-5">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="text-foreground hover:opacity-75">
+                    <Icon size={24} />
+                  </a>
+                ))}
               </motion.div>
             </motion.nav>
           </motion.div>

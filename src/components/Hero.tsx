@@ -41,7 +41,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => (
           <motion.div variants={staggerContainer} className="mt-8 flex items-center gap-5 sm:mt-10">
             {socials.map(({ icon: Icon, href, label }) => (
               <motion.a key={label} variants={fadeUp} href={href} target="_blank" rel="noreferrer" aria-label={label} className="text-foreground transition-colors hover:opacity-75">
-                <Icon size={20} />
+                <Icon size={24} />
               </motion.a>
             ))}
           </motion.div>
