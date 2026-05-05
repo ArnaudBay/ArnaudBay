@@ -52,13 +52,17 @@ const Contact = ({ language }: { language: SiteLanguage }) => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
       } else {
+        console.error("API error:", data);
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
+      console.error("Fetch error:", err);
       setStatus("error");
     }
   };

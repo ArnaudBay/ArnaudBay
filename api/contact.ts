@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await resend.emails.send({
+    const data = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: "arnaudbay@protonmail.com",
       subject: `New contact from ${name}`,
@@ -36,8 +36,19 @@ export async function POST(request: Request) {
       `,
     });
 
+    console.log("Resend response:", data);
+
+    if (data.error) {
+      console.error("Resend error:", data.error);
+      return Response.json(
+        { error: data.error.message },
+        { status: 500 }
+      );
+    }
+
     return Response.json({ success: true });
-  } catch {
+  } catch (error) {
+    console.error("API error:", error);
     return Response.json(
       { error: "Internal server error" },
       { status: 500 }
