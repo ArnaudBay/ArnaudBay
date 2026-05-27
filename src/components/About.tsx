@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { fadeUp } from "../utils/animations";
-import type { SiteLanguage } from "../pages/Index";
+import { fadeScale, fadeUp } from "../utils/animations";
+import type { SiteLanguage } from "./Layout";
 
 const copy = {
   fr: {
-    title: "Je suis un d\u00e9veloppeur Fullstack et un b\u00e2tisseur cr\u00e9atif.",
-    body1: "Je suis Arnaud BAYALE, d\u00e9veloppeur web et mobile fullstack avec une vraie passion pour la cr\u00e9ation d'exp\u00e9riences digitales utiles, \u00e9l\u00e9gantes et m\u00e9morables.",
-    body2: "Je con\u00e7ois des interfaces dynamiques et interactives, je reste \u00e0 jour sur les outils modernes, et je travaille sur des projets vari\u00e9s allant des sites personnels aux applications plus ambitieuses.",
+    title: "Je suis un développeur Fullstack et un bâtisseur créatif.",
+    body1: "Je suis Arnaud BAYALE, développeur web et mobile fullstack avec une vraie passion pour la création d'expériences digitales utiles, élégantes et mémorables.",
+    body2: "Je conçois des interfaces dynamiques et interactives, je reste à jour sur les outils modernes, et je travaille sur des projets variés allant des sites personnels aux applications plus ambitieuses.",
   },
   en: {
     title: "I am a Fullstack Developer and creative digital builder.",
@@ -15,16 +15,43 @@ const copy = {
   },
 };
 
+const PROFILE_PHOTO = "/profile.png";
+
 const About = ({ language }: { language: SiteLanguage }) => (
-  <motion.section id="about" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-block">
-    <div className="page-container max-w-4xl">
-      <div className="editorial-separator"><span className="editorial-cross">+</span></div>
-      <h2 className="mb-8 text-4xl leading-tight text-foreground md:text-[52px]">{copy[language].title}</h2>
-      <div className="space-y-6">
-        <p className="section-copy">{copy[language].body1}</p>
-        <p className="section-copy">{copy[language].body2}</p>
+  <motion.section
+    id="about"
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    className="section-block"
+  >
+    <div className="page-container max-w-5xl">
+      <div className="grid items-center gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-12">
+        <motion.div
+          variants={fadeScale}
+          className="flex justify-center md:justify-start"
+        >
+          <img
+            src={PROFILE_PHOTO}
+            alt="Arnaud BAYALE"
+            width={320}
+            height={320}
+            loading="lazy"
+            className="profile-photo h-[220px] w-[220px] rounded-full border-2 border-foreground object-cover grayscale shadow-[0_8px_24px_rgba(0,0,0,0.25)] sm:h-[260px] sm:w-[260px] md:h-[280px] md:w-[280px]"
+          />
+        </motion.div>
+
+        <div>
+          <h2 className="mb-6 text-4xl leading-tight text-foreground md:text-[44px]">
+            {copy[language].title}
+          </h2>
+          <div className="space-y-4">
+            <p className="section-copy">{copy[language].body1}</p>
+            <p className="section-copy">{copy[language].body2}</p>
+          </div>
+        </div>
       </div>
-      <div className="editorial-separator"><span className="editorial-cross">+</span></div>
     </div>
   </motion.section>
 );

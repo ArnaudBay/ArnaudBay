@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from "./SocialIcons";
-import type { SiteLanguage, SiteTheme } from "../pages/Index";
+import { Link, NavLink } from "react-router-dom";
+import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
+import type { SiteLanguage, SiteTheme } from "./Layout";
 
 type Props = {
   language: SiteLanguage;
@@ -11,12 +12,14 @@ type Props = {
   onThemeToggle: () => void;
 };
 
-const links = [
-  { href: "#top", labelFr: "Accueil", labelEn: "Home" },
-  { href: "#about", labelFr: "À propos", labelEn: "About" },
-  { href: "#skills", labelFr: "Stacks", labelEn: "Skills" },
-  { href: "#projects", labelFr: "Projets", labelEn: "Projects" },
-  { href: "#contact", labelFr: "Contact", labelEn: "Contact" },
+type NavLinkDef = { to: string; labelFr: string; labelEn: string };
+
+const links: NavLinkDef[] = [
+  { to: "/about", labelFr: "À propos", labelEn: "About" },
+  { to: "/skills", labelFr: "Stacks", labelEn: "Skills" },
+  { to: "/projects", labelFr: "Projets", labelEn: "Projects" },
+  { to: "/contact", labelFr: "Contact", labelEn: "Contact" },
+  { to: "/blog", labelFr: "Blog", labelEn: "Blog" },
 ];
 
 const socials = [
@@ -24,14 +27,27 @@ const socials = [
   { icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayale-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
   { icon: XIcon, href: "https://x.com/Arnaud_GYL", label: "X" },
   { icon: InstagramIcon, href: "https://www.instagram.com/arnaud_bayale?igsh=ODJxYTUybW41MXoy", label: "Instagram" },
+  { icon: WhatsappIcon, href: "https://wa.me/23672151688", label: "WhatsApp" },
 ];
 
 const NAV_H = "h-16 sm:h-20";
 
+const LOGO_DARK = "/logo-dark.png";
+const LOGO_LIGHT = "/logo-light.png";
+
+const Logo = ({ theme }: { theme: SiteTheme }) => (
+  <img
+    src={theme === "dark" ? LOGO_DARK : LOGO_LIGHT}
+    alt="Arnaud BAYALE"
+    className="h-12 w-auto origin-left scale-x-90 sm:h-14"
+    width={56}
+    height={56}
+  />
+);
+
 const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
@@ -59,21 +75,33 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
       : "bg-white/75 backdrop-blur-md border-b border-black/8 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
     : "border-b border-transparent";
 
+  const renderLink = (link: NavLinkDef, className: string) => (
+    <NavLink
+      key={link.to}
+      to={link.to}
+      end
+      onClick={() => setOpen(false)}
+      className={({ isActive }) =>
+        isActive ? `${className} text-foreground` : className
+      }
+    >
+      {language === "fr" ? link.labelFr : link.labelEn}
+    </NavLink>
+  );
+
   return (
     <>
       <header className={`fixed inset-x-0 top-0 z-50 ${headerBg}`}>
         <div className={`page-container flex items-center justify-between ${NAV_H}`}>
-          <a href="#top" className="font-heading text-[2.4rem] leading-none text-foreground sm:text-[3.1rem]">A.</a>
+          <Link to="/" aria-label="Accueil" className="-ml-4 flex items-center sm:-ml-2 lg:-ml-4">
+            <Logo theme={theme} />
+          </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
-            {links.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">
-                {language === "fr" ? link.labelFr : link.labelEn}
-              </a>
-            ))}
+            {links.map((link) => renderLink(link, "nav-link"))}
           </nav>
 
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="-mr-2 flex items-center gap-3 sm:-mr-0 sm:gap-4">
             <button
               type="button"
               onClick={onThemeToggle}
@@ -105,7 +133,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             className="fixed inset-0 z-[60] bg-background"
           >
             <div className={`page-container flex items-center justify-between ${NAV_H}`}>
-              <span className="font-heading text-[2.4rem] leading-none text-foreground sm:text-[3.1rem]">A.</span>
+              <Logo theme={theme} />
               <div className="flex items-center gap-3 sm:gap-4">
                 <button
                   type="button"
@@ -128,15 +156,12 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
               className="flex h-[calc(100dvh-4rem)] flex-col items-center justify-center gap-7 px-6 sm:h-[calc(100dvh-5rem)]"
             >
               {links.map((link) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
+                <motion.div
+                  key={link.to}
                   variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-                  className="font-heading text-3xl text-foreground sm:text-4xl"
                 >
-                  {language === "fr" ? link.labelFr : link.labelEn}
-                </motion.a>
+                  {renderLink(link, "font-heading text-3xl text-foreground sm:text-4xl")}
+                </motion.div>
               ))}
               <motion.div
                 variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}

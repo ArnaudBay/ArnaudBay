@@ -40,8 +40,8 @@ export default {
         },
       },
       fontFamily: {
-        heading: ["DM Serif Display", "serif"],
-        body: ["DM Mono", "monospace"],
+        heading: ["Overpass", "sans-serif"],
+        body: ["Overpass", "sans-serif"],
       },
       keyframes: {
         orbit: {

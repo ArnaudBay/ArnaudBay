@@ -1,14 +1,15 @@
 ﻿import { motion } from "framer-motion";
 import heroPortrait from "../assets/hero-portrait.jpg";
-import { GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from "./SocialIcons";
+import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
 import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
-import type { SiteLanguage } from "../pages/Index";
+import type { SiteLanguage } from "./Layout";
 
 const socials = [
   { icon: GithubIcon, href: "https://github.com/ArnaudBay", label: "GitHub" },
   { icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayale-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
   { icon: XIcon, href: "https://x.com/Arnaud_GYL", label: "X" },
   { icon: InstagramIcon, href: "https://www.instagram.com/arnaud_bayale?igsh=ODJxYTUybW41MXoy", label: "Instagram" },
+  { icon: WhatsappIcon, href: "https://wa.me/23672151688", label: "WhatsApp" },
 ];
 
 const copy = {
@@ -33,7 +34,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => (
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.p variants={fadeUp} className="tag-label mb-4 sm:mb-6">{copy[language].role}</motion.p>
           <motion.h1 variants={fadeUp} className="mb-6 text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] xl:text-[96px]">Arnaud.</motion.h1>
-          <motion.p variants={fadeUp} className="max-w-xl text-base leading-8 text-foreground/88 sm:text-lg sm:leading-9 md:text-xl">
+          <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
             {copy[language].line}
             <span className="italic text-foreground">{copy[language].highlight}</span>
             {copy[language].tail}

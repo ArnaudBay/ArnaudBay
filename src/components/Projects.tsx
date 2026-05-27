@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
-import type { SiteLanguage } from "../pages/Index";
+import type { SiteLanguage } from "./Layout";
 
 type Project = {
   title: string;
