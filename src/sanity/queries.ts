@@ -37,7 +37,7 @@ export type ProjectDoc = {
   title: string;
   descriptionFr?: string;
   descriptionEn?: string;
-  image?: import("@sanity/image-url/lib/types/types").SanityImageSource;
+  image?: import("./client").SanityImageSource;
   techs?: string[];
   url?: string;
   badgeFr?: string;
