@@ -21,7 +21,7 @@ const links = [
 ];
 
 const Footer = ({ language }: { language: SiteLanguage }) => (
-  <footer className="border-t border-border py-8">
+  <footer className="mt-16 border-t border-border py-8 sm:mt-24">
     <div className="page-container space-y-6">
       <div className="flex flex-col justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">
         <p>{copy[language].by}</p>
