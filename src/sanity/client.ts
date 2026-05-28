@@ -23,11 +23,4 @@ export const sanityClient: SanityClient | null = projectId
 
 const builder = sanityClient ? imageUrlBuilder(sanityClient) : null;
 
-export const urlFor = (source: SanityImageSource) => {
-  if (!builder) {
-    return {
-      width: () => ({ height: () => ({ fit: () => ({ url: () => "/placeholder.svg" }) }) }),
-    } as ReturnType<NonNullable<typeof builder>["image"]>;
-  }
-  return builder.image(source);
-};
+export const urlFor = (source: SanityImageSource) => builder?.image(source);

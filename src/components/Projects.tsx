@@ -51,7 +51,7 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
               const description = language === "fr" ? project.descriptionFr : project.descriptionEn;
               const badge = language === "fr" ? project.badgeFr : project.badgeEn;
               const imageUrl = project.image
-                ? urlFor(project.image).width(1200).height(750).fit("crop").url()
+                ? urlFor(project.image)?.width(1200).height(750).fit("crop").url() ?? "/placeholder.svg"
                 : "/placeholder.svg";
               return (
                 <motion.article key={project._id} variants={fadeScale} className="group overflow-hidden border border-border bg-card hover:border-foreground/40">
