@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import Layout from "./components/Layout";
@@ -8,9 +9,19 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
 import Blog from "./pages/Blog";
 
+const StudioPage = lazy(() => import("./pages/Studio"));
+
 const App = () => (
   <BrowserRouter>
     <Routes>
+      <Route
+        path="/studio/*"
+        element={
+          <Suspense fallback={<div style={{ padding: 24 }}>Loading Studio…</div>}>
+            <StudioPage />
+          </Suspense>
+        }
+      />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
