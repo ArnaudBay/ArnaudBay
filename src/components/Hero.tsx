@@ -20,7 +20,7 @@ const copy = {
     line: "Je suis développeur web & mobile basé en Republique centrafricaine. ",
     highlight: "Je conçois des expériences digitales rapides, intuitives et élégantes.",
     tail: ".",
-    cta: "Voir mes projets",
+    cta: "Voir mes projets.",
   },
   en: {
     role: "FULLSTACK WEB & MOBILE DEVELOPER",
