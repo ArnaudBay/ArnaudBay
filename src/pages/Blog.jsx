@@ -26,6 +26,10 @@ const Blog = () => {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
+    if (!sanityClient) {
+      setPosts([]);
+      return;
+    }
     let mounted = true;
     sanityClient
       .fetch(BLOG_POSTS_QUERY)

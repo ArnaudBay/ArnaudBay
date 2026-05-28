@@ -16,6 +16,10 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
   const [projects, setProjects] = useState<ProjectDoc[] | null>(null);
 
   useEffect(() => {
+    if (!sanityClient) {
+      setProjects([]);
+      return;
+    }
     let mounted = true;
     sanityClient
       .fetch<ProjectDoc[]>(PROJECTS_QUERY)

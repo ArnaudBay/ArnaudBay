@@ -2,13 +2,32 @@ import { createClient, type SanityClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-export const sanityClient: SanityClient = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID as string,
-  dataset: (import.meta.env.VITE_SANITY_DATASET as string) || "production",
-  apiVersion: "2024-01-01",
-  useCdn: true,
-});
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID as string | undefined;
+const dataset = (import.meta.env.VITE_SANITY_DATASET as string | undefined) || "production";
 
-const builder = imageUrlBuilder(sanityClient);
+if (!projectId) {
+  // eslint-disable-next-line no-console
+  console.warn(
+    "[Sanity] VITE_SANITY_PROJECT_ID is missing. Set it in your environment (.env or Vercel env vars)."
+  );
+}
 
-export const urlFor = (source: SanityImageSource) => builder.image(source);
+export const sanityClient: SanityClient | null = projectId
+  ? createClient({
+      projectId,
+      dataset,
+      apiVersion: "2024-01-01",
+      useCdn: true,
+    })
+  : null;
+
+const builder = sanityClient ? imageUrlBuilder(sanityClient) : null;
+
+export const urlFor = (source: SanityImageSource) => {
+  if (!builder) {
+    return {
+      width: () => ({ height: () => ({ fit: () => ({ url: () => "/placeholder.svg" }) }) }),
+    } as ReturnType<NonNullable<typeof builder>["image"]>;
+  }
+  return builder.image(source);
+};
