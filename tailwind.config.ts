@@ -40,8 +40,8 @@ export default {
         },
       },
       fontFamily: {
-        heading: ["Overpass", "sans-serif"],
-        body: ["Overpass", "sans-serif"],
+        heading: ["Gabarito", "sans-serif"],
+        body: ["Gabarito", "sans-serif"],
       },
       keyframes: {
         orbit: {

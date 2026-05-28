@@ -3,7 +3,7 @@ export const trustedPartners = [
     name: "Edev",
     logo: "/trusted/edev.svg",
     url: "https://edev-ca.com/",
-    invertOnDark: true,
+    invertOnDark: false,
   },
   {
     name: "Ikoue",
@@ -22,5 +22,12 @@ export const trustedPartners = [
     logo: "/trusted/yann-ouafete.svg",
     url: "https://yannouafete.com/",
     invertOnDark: true,
+  },
+  {
+    name: "Jerry Mbendaleca",
+    logo: "/trusted/jerry-light.svg",
+    logoLight: "/trusted/jerry-dark.svg",
+    url: "https://jerrymbendaleca.vercel.app/",
+    invertOnDark: false,
   },
 ];

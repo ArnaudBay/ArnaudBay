@@ -38,7 +38,7 @@ const About = ({ language }: { language: SiteLanguage }) => (
             width={320}
             height={320}
             loading="lazy"
-            className="profile-photo h-[220px] w-[220px] rounded-full border-2 border-foreground object-cover grayscale shadow-[0_8px_24px_rgba(0,0,0,0.25)] sm:h-[260px] sm:w-[260px] md:h-[280px] md:w-[280px]"
+            className="profile-photo h-[220px] w-[220px] rounded-full border-2 border-foreground object-cover grayscale shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition duration-500 hover:grayscale-0 sm:h-[260px] sm:w-[260px] md:h-[280px] md:w-[280px]"
           />
         </motion.div>
 

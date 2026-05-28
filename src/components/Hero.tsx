@@ -1,4 +1,6 @@
 ﻿import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import heroPortrait from "../assets/hero-portrait.jpg";
 import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
 import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
@@ -18,17 +20,19 @@ const copy = {
     line: "Je suis développeur web & mobile basé en Republique centrafricaine. ",
     highlight: "Je conçois des expériences digitales rapides, intuitives et élégantes.",
     tail: ".",
+    cta: "Voir mes projets",
   },
   en: {
     role: "FULLSTACK WEB & MOBILE DEVELOPER",
     line: "I build ",
     highlight: "clean, fast, and thoughtful digital products",
     tail: " for web and mobile.",
+    cta: "View my projects",
   },
 };
 
 const Hero = ({ language }: { language: SiteLanguage }) => (
-  <motion.section id="top" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-block pt-28 sm:pt-36">
+  <motion.section id="top" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="pt-28 pb-12 sm:pt-36 sm:pb-16">
     <div className="page-container">
       <div className="grid items-center gap-10 sm:gap-16 lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -48,7 +52,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => (
           </motion.div>
         </motion.div>
 
-        <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex justify-center lg:justify-end">
+        <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-8 lg:items-end">
           <div className="orbit-shell">
             <div className="orbit-dot-ring" />
             <img
@@ -59,10 +63,14 @@ const Hero = ({ language }: { language: SiteLanguage }) => (
               className="h-[250px] w-[250px] rounded-full border-2 border-foreground object-cover grayscale sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px]"
             />
           </div>
+          <Link
+            to="/projects"
+            className="group inline-flex items-center gap-2 border-b border-b-foreground/40 pb-1 text-xs font-bold uppercase tracking-[0.24em] text-foreground transition-all duration-200 hover:gap-3 hover:border-b-foreground"
+          >
+            <span>{copy[language].cta}</span>
+            <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
         </motion.div>
-      </div>
-      <div className="editorial-separator">
-        <span className="editorial-cross">+</span>
       </div>
     </div>
   </motion.section>

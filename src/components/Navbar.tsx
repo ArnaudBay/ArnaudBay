@@ -72,7 +72,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
   const headerBg = scrolled
     ? theme === "dark"
       ? "bg-black/50 backdrop-blur-md border-b border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
-      : "bg-white/75 backdrop-blur-md border-b border-black/8 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+      : "bg-[#F3EDE4]/80 backdrop-blur-md border-b border-black/8 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
     : "border-b border-transparent";
 
   const renderLink = (link: NavLinkDef, className: string) => (
@@ -109,6 +109,15 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
               style={{ backgroundColor: theme === "light" ? "black" : "white" }}
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             />
+
+            <button
+              type="button"
+              onClick={() => onLanguageChange(language === "fr" ? "en" : "fr")}
+              aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
+              className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:text-foreground lg:hidden"
+            >
+              {language === "fr" ? "EN" : "FR"}
+            </button>
 
             <div className="hidden items-center gap-3 lg:flex">
               <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
