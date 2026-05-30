@@ -14,7 +14,7 @@ const copy = {
 
 const links = [
   { label: "Email", icon: MailIcon, href: "mailto:arnaud@gmail.com" },
-  { label: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayale-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+  { label: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayalé-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
   { label: "GitHub", icon: GithubIcon, href: "https://github.com/ArnaudBay" },
   { label: "Instagram", icon: InstagramIcon, href: "https://www.instagram.com/arnaud_bayale?igsh=ODJxYTUybW41MXoy" },
   { label: "WhatsApp", icon: WhatsappIcon, href: "https://wa.me/23672151688" },

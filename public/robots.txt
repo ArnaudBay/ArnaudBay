@@ -1,0 +1,10 @@
+# robots.txt — Portfolio Arnaud BAYALE
+# TODO: remplacer le domaine ci-dessous par le domaine definitif une fois achete
+
+User-agent: *
+Allow: /
+
+# Espace d'administration Sanity : ne pas indexer
+Disallow: /studio
+
+Sitemap: https://arnaudbayale.com/sitemap.xml

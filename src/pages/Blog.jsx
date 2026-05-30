@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
+import { useSeo } from "../utils/seo";
 import { sanityClient } from "../sanity/client";
 import { BLOG_POSTS_QUERY } from "../sanity/queries";
 
@@ -23,6 +24,7 @@ const labels = {
 
 const Blog = () => {
   const language = useLanguage();
+  useSeo("blog", language);
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {

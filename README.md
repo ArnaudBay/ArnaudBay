@@ -73,7 +73,7 @@ Je suis ouvert a :
 ## Me contacter
 
 - GitHub : [ArnaudBay](https://github.com/ArnaudBay)
-- LinkedIn : [Arnaud BAYALE](https://www.linkedin.com/in/arnaud-bayale-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android)
+- LinkedIn : [Arnaud BAYALE](https://www.linkedin.com/in/arnaud-bayalé-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 - X : [@Arnaud_GYL](https://x.com/Arnaud_GYL)
 - Instagram : [@arnaud_bayale](https://www.instagram.com/arnaud_bayale?igsh=ODJxYTUybW41MXoy)
 - Email : [arnaud@gmail.com](mailto:arnaud@gmail.com)

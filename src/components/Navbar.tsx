@@ -24,7 +24,7 @@ const links: NavLinkDef[] = [
 
 const socials = [
   { icon: GithubIcon, href: "https://github.com/ArnaudBay", label: "GitHub" },
-  { icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayale-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+  { icon: LinkedinIcon, href: "https://www.linkedin.com/in/arnaud-bayalé-57a35b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
   { icon: XIcon, href: "https://x.com/Arnaud_GYL", label: "X" },
   { icon: InstagramIcon, href: "https://www.instagram.com/arnaud_bayale?igsh=ODJxYTUybW41MXoy", label: "Instagram" },
   { icon: WhatsappIcon, href: "https://wa.me/23672151688", label: "WhatsApp" },
