@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Eye, Heart } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 import { fadeUp } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
@@ -217,26 +217,25 @@ const BlogPost = () => {
           ) : (
             <motion.article variants={fadeUp} initial="hidden" animate="visible">
               <header className="mb-10">
-                <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.18em]">
+                <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-foreground/40">
                   {post.category ? <span className="project-tag">{post.category}</span> : null}
-                  {post.date ? (
-                    <span className="text-foreground/40">
-                      {new Date(post.date).toLocaleDateString(locale, {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })}
-                    </span>
-                  ) : null}
                   {(() => {
                     const charCount = language === "fr" ? post.charCountFr : post.charCountEn;
-                    const minutes = readingTime(charCount, language);
-                    return minutes ? <span className="text-foreground/40">{minutes}</span> : null;
+                    const meta = [
+                      post.date
+                        ? new Date(post.date).toLocaleDateString(locale, {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          })
+                        : null,
+                      readingTime(charCount, language) || null,
+                      `${views} ${t.views}`,
+                    ]
+                      .filter(Boolean)
+                      .join("  ·  ");
+                    return <span className="leading-relaxed">{meta}</span>;
                   })()}
-                  <span className="inline-flex items-center gap-1.5 text-foreground/40">
-                    <Eye size={14} />
-                    {views} {t.views}
-                  </span>
                 </div>
                 <h1 className="text-3xl leading-tight text-foreground sm:text-4xl md:text-5xl">
                   {title}

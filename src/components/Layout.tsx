@@ -9,7 +9,7 @@ export type SiteTheme = "dark" | "light";
 type LayoutCtx = { language: SiteLanguage; theme: SiteTheme };
 
 const Layout = () => {
-  const [language, setLanguage] = useState<SiteLanguage>("en");
+  const [language, setLanguage] = useState<SiteLanguage>("fr");
   const [theme, setTheme] = useState<SiteTheme>(() => {
     if (typeof window !== "undefined") {
       return (localStorage.getItem("theme") as SiteTheme) || "dark";
