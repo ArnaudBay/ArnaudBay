@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Eye, Heart } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Eye, Heart } from "lucide-react";
 import { fadeUp, staggerContainer } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
 import { useSeo } from "../utils/seo";
@@ -15,12 +15,16 @@ const labels = {
     subtitle: "Notes, retours d'expérience et articles techniques.",
     loading: "Chargement…",
     empty: "Aucun article pour l'instant.",
+    all: "Tout",
+    noResult: "Aucun article dans cette catégorie.",
   },
   en: {
     title: "Blog",
     subtitle: "Notes, experience reports and technical articles.",
     loading: "Loading…",
     empty: "No articles yet.",
+    all: "All",
+    noResult: "No articles in this category.",
   },
 };
 
@@ -39,6 +43,7 @@ const Blog = () => {
   const language = useLanguage();
   useSeo("blog", language);
   const [posts, setPosts] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
 
   useEffect(() => {
     if (!sanityClient) {
@@ -56,6 +61,14 @@ const Blog = () => {
   }, []);
 
   const locale = language === "fr" ? "fr-FR" : "en-US";
+
+  const safePosts = Array.isArray(posts) ? posts : [];
+  // Catégories uniques, dans leur ordre d'apparition (articles déjà triés par date).
+  const categories = [...new Set(safePosts.map((p) => p.category).filter(Boolean))];
+  const filtered =
+    activeCategory === "all"
+      ? safePosts
+      : safePosts.filter((p) => p.category === activeCategory);
 
   return (
     <motion.section
@@ -82,8 +95,35 @@ const Blog = () => {
         ) : posts.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground">{labels[language].empty}</p>
         ) : (
-          <div className="mx-auto max-w-3xl space-y-16">
-            {groupByYear(posts).map(([year, yearPosts]) => (
+          <>
+            {categories.length > 0 ? (
+              <div className="mb-14 flex flex-wrap items-center justify-center gap-2.5">
+                {[{ value: "all", label: labels[language].all }, ...categories.map((c) => ({ value: c, label: c }))].map(
+                  ({ value, label }) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => setActiveCategory(value)}
+                      className={`rounded-full border px-4 py-1.5 text-[11px] uppercase tracking-[0.16em] transition-colors ${
+                        activeCategory === value
+                          ? "border-foreground bg-foreground text-background"
+                          : "border-border text-foreground/60 hover:border-foreground/50 hover:text-foreground"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  )
+                )}
+              </div>
+            ) : null}
+
+            {filtered.length === 0 ? (
+              <p className="text-center text-sm text-muted-foreground">
+                {labels[language].noResult}
+              </p>
+            ) : (
+              <div key={activeCategory} className="mx-auto max-w-3xl space-y-16">
+                {groupByYear(filtered).map(([year, yearPosts]) => (
               <div key={year}>
                 <h3 className="mb-6 font-body text-sm font-bold uppercase tracking-[0.24em] text-foreground/40">
                   {year}
@@ -129,10 +169,15 @@ const Blog = () => {
                           </span>
                           {isExternal ? (
                             <ArrowUpRight
-                              size={16}
+                              size={18}
                               className="mt-1 shrink-0 text-foreground/40 transition-transform group-hover:translate-x-0.5"
                             />
-                          ) : null}
+                          ) : (
+                            <ArrowRight
+                              size={18}
+                              className="mt-1 shrink-0 text-foreground/40 transition-transform group-hover:translate-x-1"
+                            />
+                          )}
                         </div>
                         <div className="mt-3 flex items-center gap-5 text-[11px] uppercase tracking-[0.16em] text-foreground/40">
                           <span className="inline-flex items-center gap-1.5">
@@ -168,8 +213,10 @@ const Blog = () => {
                   })}
                 </motion.ul>
               </div>
-            ))}
-          </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </motion.section>
