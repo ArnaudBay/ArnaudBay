@@ -63,7 +63,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
             </motion.div>
           </motion.div>
 
-          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-8 sm:gap-10 lg:items-end">
+          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-12 sm:gap-14 lg:items-end">
             <div className="orbit-shell">
               <div className="orbit-dot-ring" />
               <img
