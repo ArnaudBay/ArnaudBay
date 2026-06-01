@@ -18,6 +18,7 @@ const labels = {
     empty: "Cet article n'a pas encore de contenu.",
     views: "vues",
     like: "J'aime",
+    likePrompt: "Cet article vous a plu ?",
   },
   en: {
     back: "Back to all posts",
@@ -27,6 +28,7 @@ const labels = {
     empty: "This post has no content yet.",
     views: "views",
     like: "Like",
+    likePrompt: "Enjoyed this post?",
   },
 };
 
@@ -231,34 +233,14 @@ const BlogPost = () => {
                     const minutes = readingTime(charCount, language);
                     return minutes ? <span className="text-foreground/40">{minutes}</span> : null;
                   })()}
+                  <span className="inline-flex items-center gap-1.5 text-foreground/40">
+                    <Eye size={14} />
+                    {views} {t.views}
+                  </span>
                 </div>
                 <h1 className="text-3xl leading-tight text-foreground sm:text-4xl md:text-5xl">
                   {title}
                 </h1>
-                <div className="mt-6 flex items-center gap-5 text-[11px] uppercase tracking-[0.18em] text-foreground/50">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Eye size={15} />
-                    {views} {t.views}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={handleLike}
-                    disabled={likePending}
-                    aria-pressed={liked}
-                    aria-label={t.like}
-                    className={`inline-flex items-center gap-1.5 transition-colors disabled:opacity-60 ${
-                      liked ? "text-foreground" : "hover:text-foreground"
-                    }`}
-                  >
-                    <Heart
-                      size={15}
-                      className={`transition-transform ${liked ? "fill-current" : ""} ${
-                        likePending ? "scale-90" : ""
-                      }`}
-                    />
-                    {likes} {t.like}
-                  </button>
-                </div>
               </header>
 
               {post.coverImage
@@ -290,8 +272,32 @@ const BlogPost = () => {
                 })()}
               </div>
 
+              <div className="mt-16 flex flex-col items-center gap-4 border-t border-border pt-10 text-center">
+                <p className="font-body text-[11px] uppercase tracking-[0.2em] text-foreground/50">
+                  {t.likePrompt}
+                </p>
+                <button
+                  type="button"
+                  onClick={handleLike}
+                  disabled={likePending}
+                  aria-pressed={liked}
+                  className={`inline-flex items-center gap-2.5 rounded-full border px-6 py-3 text-sm uppercase tracking-[0.16em] transition-all disabled:opacity-60 ${
+                    liked
+                      ? "border-foreground text-foreground"
+                      : "border-border text-foreground/60 hover:border-foreground/50 hover:text-foreground"
+                  }`}
+                >
+                  <Heart
+                    size={18}
+                    className={`transition-transform ${liked ? "scale-110 fill-current" : ""}`}
+                  />
+                  {t.like}
+                  <span className="tabular-nums">{likes}</span>
+                </button>
+              </div>
+
               {post.author ? (
-                <footer className="mt-16 border-t border-border pt-6 font-body text-[11px] uppercase tracking-[0.2em] text-foreground/50">
+                <footer className="mt-10 text-center font-body text-[11px] uppercase tracking-[0.2em] text-foreground/50">
                   {t.by} {post.author}
                 </footer>
               ) : null}

@@ -110,34 +110,38 @@ const Blog = () => {
 
                     const meta = (
                       <>
-                        <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.18em]">
-                          {post.category ? (
-                            <span className="project-tag">{post.category}</span>
-                          ) : null}
-                          {minutes ? (
-                            <span className="text-foreground/40">{minutes}</span>
-                          ) : null}
-                          <span className="inline-flex items-center gap-1 text-foreground/40">
-                            <Eye size={13} />
-                            {post.viewCount || 0}
-                          </span>
-                          <span className="inline-flex items-center gap-1 text-foreground/40">
-                            <Heart size={13} />
-                            {post.likeCount || 0}
+                        <div className="mb-3 flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.18em]">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                            {post.category ? (
+                              <span className="project-tag">{post.category}</span>
+                            ) : null}
+                            {minutes ? (
+                              <span className="text-foreground/40">{minutes}</span>
+                            ) : null}
+                          </div>
+                          <span className="shrink-0 whitespace-nowrap text-foreground/40">
+                            {day}
                           </span>
                         </div>
                         <div className="flex items-baseline justify-between gap-4">
                           <span className="text-xl text-foreground transition-colors group-hover:text-foreground/70 sm:text-2xl">
                             {title}
                           </span>
-                          <span className="flex shrink-0 items-center gap-2 whitespace-nowrap font-body text-[11px] uppercase tracking-[0.18em] text-foreground/40">
-                            {day}
-                            {isExternal ? (
-                              <ArrowUpRight
-                                size={15}
-                                className="transition-transform group-hover:translate-x-0.5"
-                              />
-                            ) : null}
+                          {isExternal ? (
+                            <ArrowUpRight
+                              size={16}
+                              className="mt-1 shrink-0 text-foreground/40 transition-transform group-hover:translate-x-0.5"
+                            />
+                          ) : null}
+                        </div>
+                        <div className="mt-3 flex items-center gap-5 text-[11px] uppercase tracking-[0.16em] text-foreground/40">
+                          <span className="inline-flex items-center gap-1.5">
+                            <Eye size={13} />
+                            {post.viewCount || 0}
+                          </span>
+                          <span className="inline-flex items-center gap-1.5">
+                            <Heart size={13} />
+                            {post.likeCount || 0}
                           </span>
                         </div>
                       </>
