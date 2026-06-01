@@ -8,6 +8,7 @@ import Skills from "./pages/Skills";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const StudioPage = lazy(() => import("./pages/Studio"));
 
@@ -29,6 +30,7 @@ const App = () => (
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
       </Route>
     </Routes>
     <Analytics />

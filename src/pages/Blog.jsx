@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
+import { fadeUp, staggerContainer } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
 import { useSeo } from "../utils/seo";
+import { readingTime } from "../utils/readingTime";
 import { sanityClient } from "../sanity/client";
 import { BLOG_POSTS_QUERY } from "../sanity/queries";
 
@@ -21,6 +23,17 @@ const labels = {
     empty: "No articles yet.",
   },
 };
+
+/** Regroupe les articles par année (déjà triés par date décroissante en amont). */
+function groupByYear(posts) {
+  const groups = new Map();
+  for (const post of posts) {
+    const year = post.date ? new Date(post.date).getFullYear() : "—";
+    if (!groups.has(year)) groups.set(year, []);
+    groups.get(year).push(post);
+  }
+  return [...groups.entries()];
+}
 
 const Blog = () => {
   const language = useLanguage();
@@ -42,6 +55,8 @@ const Blog = () => {
     };
   }, []);
 
+  const locale = language === "fr" ? "fr-FR" : "en-US";
+
   return (
     <motion.section
       variants={fadeUp}
@@ -58,7 +73,7 @@ const Blog = () => {
           </h2>
           <span className="editorial-cross">+</span>
         </div>
-        <p className="section-copy mx-auto mb-12 max-w-2xl text-center">
+        <p className="section-copy mx-auto mb-16 max-w-2xl text-center">
           {labels[language].subtitle}
         </p>
 
@@ -67,62 +82,82 @@ const Blog = () => {
         ) : posts.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground">{labels[language].empty}</p>
         ) : (
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3"
-          >
-            {posts.map((post, index) => {
-              const description = language === "fr" ? post.descriptionFr : post.descriptionEn;
-              const title = language === "fr" ? post.titleFr : post.titleEn;
-              const date = new Date(post.date).toLocaleDateString(
-                language === "fr" ? "fr-FR" : "en-US",
-                { day: "numeric", month: "long", year: "numeric" }
-              );
-
-              return (
-                <motion.article
-                  key={post.slug}
-                  variants={fadeScale}
-                  className="group overflow-hidden border border-border bg-card hover:border-foreground/40"
+          <div className="mx-auto max-w-3xl space-y-16">
+            {groupByYear(posts).map(([year, yearPosts]) => (
+              <div key={year}>
+                <h3 className="mb-6 font-body text-sm font-bold uppercase tracking-[0.24em] text-foreground/40">
+                  {year}
+                </h3>
+                <motion.ul
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="divide-y divide-border"
                 >
-                  <div className="space-y-3 p-4 sm:space-y-4 sm:p-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="mb-1.5 font-body text-[11px] uppercase tracking-[0.2em] text-foreground/60 sm:mb-2">
-                          {String(index + 1).padStart(2, "0")} — {date}
-                        </p>
-                        <h3 className="text-xl text-foreground sm:text-2xl">{title}</h3>
-                      </div>
-                      {post.url ? (
-                        <a
-                          href={post.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={title}
-                          className="mt-1 text-foreground/80 transition-all duration-200 group-hover:translate-x-1 group-hover:text-foreground/75"
-                        >
-                          <ArrowUpRight size={18} />
-                        </a>
-                      ) : (
-                        <span className="mt-1 text-foreground/35">
-                          <ArrowUpRight size={18} />
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm leading-7 text-muted-foreground">{description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {(post.tags || []).map((tag) => (
-                        <span key={tag} className="project-tag">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.article>
-              );
-            })}
-          </motion.div>
+                  {yearPosts.map((post) => {
+                    const title = language === "fr" ? post.titleFr : post.titleEn;
+                    const charCount =
+                      language === "fr" ? post.charCountFr : post.charCountEn;
+                    const minutes = readingTime(charCount, language);
+                    const day = post.date
+                      ? new Date(post.date).toLocaleDateString(locale, {
+                          day: "numeric",
+                          month: "short",
+                        })
+                      : "";
+                    const isExternal = Boolean(post.url);
+
+                    const meta = (
+                      <>
+                        <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.18em]">
+                          {post.category ? (
+                            <span className="project-tag">{post.category}</span>
+                          ) : null}
+                          {minutes ? (
+                            <span className="text-foreground/40">{minutes}</span>
+                          ) : null}
+                        </div>
+                        <div className="flex items-baseline justify-between gap-4">
+                          <span className="text-xl text-foreground transition-colors group-hover:text-foreground/70 sm:text-2xl">
+                            {title}
+                          </span>
+                          <span className="flex shrink-0 items-center gap-2 whitespace-nowrap font-body text-[11px] uppercase tracking-[0.18em] text-foreground/40">
+                            {day}
+                            {isExternal ? (
+                              <ArrowUpRight
+                                size={15}
+                                className="transition-transform group-hover:translate-x-0.5"
+                              />
+                            ) : null}
+                          </span>
+                        </div>
+                      </>
+                    );
+
+                    return (
+                      <motion.li key={post.slug} variants={fadeUp}>
+                        {isExternal ? (
+                          <a
+                            href={post.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group block py-6"
+                          >
+                            {meta}
+                          </a>
+                        ) : (
+                          <Link to={`/blog/${post.slug}`} className="group block py-6">
+                            {meta}
+                          </Link>
+                        )}
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </motion.section>

@@ -3,10 +3,33 @@ export const BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
   titleFr,
   titleEn,
   date,
+  category,
+  author,
+  coverImage,
   descriptionFr,
   descriptionEn,
   tags,
-  url
+  url,
+  "charCountFr": length(pt::text(bodyFr)),
+  "charCountEn": length(pt::text(bodyEn))
+}`;
+
+export const BLOG_POST_BY_SLUG_QUERY = `*[_type == "blogPost" && slug.current == $slug][0] {
+  "slug": slug.current,
+  titleFr,
+  titleEn,
+  date,
+  category,
+  author,
+  coverImage,
+  descriptionFr,
+  descriptionEn,
+  tags,
+  url,
+  bodyFr,
+  bodyEn,
+  "charCountFr": length(pt::text(bodyFr)),
+  "charCountEn": length(pt::text(bodyEn))
 }`;
 
 export const PROJECTS_QUERY = `*[_type == "project"] | order(coalesce(order, 999) asc, _createdAt asc) {
@@ -26,10 +49,20 @@ export type BlogPostDoc = {
   titleFr: string;
   titleEn: string;
   date: string;
+  category?: string;
+  author?: string;
+  coverImage?: import("./client").SanityImageSource;
   descriptionFr?: string;
   descriptionEn?: string;
   tags?: string[];
   url?: string;
+  charCountFr?: number;
+  charCountEn?: number;
+};
+
+export type BlogPostFullDoc = BlogPostDoc & {
+  bodyFr?: unknown[];
+  bodyEn?: unknown[];
 };
 
 export type ProjectDoc = {
