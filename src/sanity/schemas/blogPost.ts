@@ -8,6 +8,7 @@ export default defineType({
     { name: "meta", title: "Méta", default: true },
     { name: "contentFr", title: "Contenu (FR)" },
     { name: "contentEn", title: "Contenu (EN)" },
+    { name: "stats", title: "Statistiques" },
   ],
   fields: [
     defineField({
@@ -86,6 +87,26 @@ export default defineType({
         "À renseigner uniquement si l'article pointe vers un site externe au lieu d'une page interne.",
     }),
 
+    // --- Statistiques (alimentées automatiquement par le site, non éditables) ---
+    defineField({
+      name: "viewCount",
+      title: "Vues",
+      type: "number",
+      group: "stats",
+      readOnly: true,
+      initialValue: 0,
+      description: "Incrémenté automatiquement à chaque visite de l'article.",
+    }),
+    defineField({
+      name: "likeCount",
+      title: "Likes",
+      type: "number",
+      group: "stats",
+      readOnly: true,
+      initialValue: 0,
+      description: "Incrémenté automatiquement quand un visiteur aime l'article.",
+    }),
+
     // --- Contenu FR ---
     defineField({
       name: "descriptionFr",
@@ -143,8 +164,14 @@ export default defineType({
     { title: "Date (ancien)", name: "dateAsc", by: [{ field: "date", direction: "asc" }] },
   ],
   preview: {
-    select: { title: "titleFr", date: "date", category: "category", media: "coverImage" },
-    prepare({ title, date, category, media }) {
+    select: {
+      title: "titleFr",
+      date: "date",
+      category: "category",
+      media: "coverImage",
+      bodyFr: "bodyFr",
+    },
+    prepare({ title, date, category, media, bodyFr }) {
       const formatted = date
         ? new Date(date).toLocaleDateString("fr-FR", {
             day: "numeric",
@@ -152,9 +179,19 @@ export default defineType({
             year: "numeric",
           })
         : "Sans date";
+      // Longueur du texte du corps (~1000 caractères ≈ 1 min de lecture).
+      const charCount = Array.isArray(bodyFr)
+        ? bodyFr.reduce((sum, block) => {
+            if (block?._type !== "block" || !Array.isArray(block.children)) return sum;
+            return (
+              sum + block.children.map((child) => child?.text || "").join("").length
+            );
+          }, 0)
+        : 0;
+      const minutes = charCount ? `${Math.max(1, Math.round(charCount / 1000))} min` : null;
       return {
         title,
-        subtitle: [category, formatted].filter(Boolean).join(" · "),
+        subtitle: [category, formatted, minutes].filter(Boolean).join(" · "),
         media,
       };
     },

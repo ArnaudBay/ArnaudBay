@@ -10,6 +10,8 @@ export const BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
   descriptionEn,
   tags,
   url,
+  "viewCount": coalesce(viewCount, 0),
+  "likeCount": coalesce(likeCount, 0),
   "charCountFr": length(pt::text(bodyFr)),
   "charCountEn": length(pt::text(bodyEn))
 }`;
@@ -26,6 +28,8 @@ export const BLOG_POST_BY_SLUG_QUERY = `*[_type == "blogPost" && slug.current ==
   descriptionEn,
   tags,
   url,
+  "viewCount": coalesce(viewCount, 0),
+  "likeCount": coalesce(likeCount, 0),
   bodyFr,
   bodyEn,
   "charCountFr": length(pt::text(bodyFr)),
@@ -56,6 +60,8 @@ export type BlogPostDoc = {
   descriptionEn?: string;
   tags?: string[];
   url?: string;
+  viewCount?: number;
+  likeCount?: number;
   charCountFr?: number;
   charCountEn?: number;
 };

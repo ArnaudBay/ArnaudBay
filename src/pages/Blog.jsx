@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Eye, Heart } from "lucide-react";
 import { fadeUp, staggerContainer } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
 import { useSeo } from "../utils/seo";
@@ -117,6 +117,14 @@ const Blog = () => {
                           {minutes ? (
                             <span className="text-foreground/40">{minutes}</span>
                           ) : null}
+                          <span className="inline-flex items-center gap-1 text-foreground/40">
+                            <Eye size={13} />
+                            {post.viewCount || 0}
+                          </span>
+                          <span className="inline-flex items-center gap-1 text-foreground/40">
+                            <Heart size={13} />
+                            {post.likeCount || 0}
+                          </span>
                         </div>
                         <div className="flex items-baseline justify-between gap-4">
                           <span className="text-xl text-foreground transition-colors group-hover:text-foreground/70 sm:text-2xl">

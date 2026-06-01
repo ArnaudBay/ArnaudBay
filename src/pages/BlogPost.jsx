@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, Heart } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 import { fadeUp } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
@@ -16,6 +16,8 @@ const labels = {
     notFound: "Article introuvable.",
     by: "Par",
     empty: "Cet article n'a pas encore de contenu.",
+    views: "vues",
+    like: "J'aime",
   },
   en: {
     back: "Back to all posts",
@@ -23,6 +25,8 @@ const labels = {
     notFound: "Post not found.",
     by: "By",
     empty: "This post has no content yet.",
+    views: "views",
+    like: "Like",
   },
 };
 
@@ -100,6 +104,10 @@ const BlogPost = () => {
   const language = useLanguage();
   const { slug } = useParams();
   const [post, setPost] = useState(undefined); // undefined = chargement, null = introuvable
+  const [views, setViews] = useState(0);
+  const [likes, setLikes] = useState(0);
+  const [liked, setLiked] = useState(false);
+  const [likePending, setLikePending] = useState(false);
 
   useEffect(() => {
     if (!sanityClient) {
@@ -116,6 +124,63 @@ const BlogPost = () => {
       mounted = false;
     };
   }, [slug]);
+
+  // Initialise les compteurs et l'état "aimé" à partir des données chargées.
+  useEffect(() => {
+    if (!post) return;
+    setViews(post.viewCount || 0);
+    setLikes(post.likeCount || 0);
+    if (typeof window !== "undefined") {
+      setLiked(localStorage.getItem(`liked:${post.slug}`) === "1");
+    }
+  }, [post]);
+
+  // Incrémente les vues une seule fois par session et par article.
+  useEffect(() => {
+    if (!post || !slug || typeof window === "undefined") return;
+    const key = `viewed:${slug}`;
+    if (sessionStorage.getItem(key)) return;
+    fetch("/api/views", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug }),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && typeof d.viewCount === "number") {
+          setViews(d.viewCount);
+          sessionStorage.setItem(key, "1");
+        }
+      })
+      .catch(() => {});
+  }, [post, slug]);
+
+  const handleLike = () => {
+    if (likePending || !slug) return;
+    const next = !liked;
+    setLikePending(true);
+    setLiked(next);
+    setLikes((v) => Math.max(0, v + (next ? 1 : -1)));
+    fetch("/api/likes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug, action: next ? "like" : "unlike" }),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && typeof d.likeCount === "number") setLikes(d.likeCount);
+        if (typeof window !== "undefined") {
+          if (next) localStorage.setItem(`liked:${slug}`, "1");
+          else localStorage.removeItem(`liked:${slug}`);
+        }
+      })
+      .catch(() => {
+        // Annule l'optimisme en cas d'échec réseau.
+        setLiked(!next);
+        setLikes((v) => Math.max(0, v + (next ? -1 : 1)));
+      })
+      .finally(() => setLikePending(false));
+  };
 
   const t = labels[language];
 
@@ -170,6 +235,30 @@ const BlogPost = () => {
                 <h1 className="text-3xl leading-tight text-foreground sm:text-4xl md:text-5xl">
                   {title}
                 </h1>
+                <div className="mt-6 flex items-center gap-5 text-[11px] uppercase tracking-[0.18em] text-foreground/50">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Eye size={15} />
+                    {views} {t.views}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleLike}
+                    disabled={likePending}
+                    aria-pressed={liked}
+                    aria-label={t.like}
+                    className={`inline-flex items-center gap-1.5 transition-colors disabled:opacity-60 ${
+                      liked ? "text-foreground" : "hover:text-foreground"
+                    }`}
+                  >
+                    <Heart
+                      size={15}
+                      className={`transition-transform ${liked ? "fill-current" : ""} ${
+                        likePending ? "scale-90" : ""
+                      }`}
+                    />
+                    {likes} {t.like}
+                  </button>
+                </div>
               </header>
 
               {post.coverImage
