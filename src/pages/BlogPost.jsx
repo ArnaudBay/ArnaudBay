@@ -288,10 +288,14 @@ const BlogPost = () => {
                 >
                   <Heart
                     size={18}
-                    className={`transition-transform ${liked ? "scale-110 fill-current" : ""}`}
+                    className={`shrink-0 transition-transform ${liked ? "scale-110" : ""}`}
+                    style={
+                      liked
+                        ? { color: "#ef4444", fill: "#ef4444" }
+                        : { fill: "none" }
+                    }
                   />
-                  {t.like}
-                  <span className="tabular-nums">{likes}</span>
+                  <span>{t.like}</span>
                 </button>
               </div>
 
