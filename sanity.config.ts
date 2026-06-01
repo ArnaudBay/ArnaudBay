@@ -2,6 +2,7 @@ import { defineConfig, type Config } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./src/sanity/schemas";
+import { structure } from "./src/sanity/structure";
 
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID as string | undefined;
 const dataset = (import.meta.env.VITE_SANITY_DATASET as string | undefined) || "production";
@@ -15,7 +16,7 @@ const config: Config | null = projectId
       projectId,
       dataset,
       basePath: "/studio",
-      plugins: [structureTool(), visionTool()],
+      plugins: [structureTool({ structure }), visionTool()],
       schema: { types: schemaTypes },
     })
   : null;
