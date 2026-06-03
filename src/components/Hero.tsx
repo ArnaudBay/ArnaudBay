@@ -63,7 +63,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
             </motion.div>
           </motion.div>
 
-          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-12 sm:gap-14 lg:items-end">
+          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-6 sm:gap-8 lg:items-end">
             <div className="orbit-shell">
               <div className="orbit-dot-ring" />
               <img
@@ -74,7 +74,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
                 className="h-[250px] w-[250px] rounded-full border-2 border-foreground object-cover grayscale sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px]"
               />
             </div>
-            {/* Lien toujours en bas de la photo (mobile et desktop) */}
+            {/* Lien sous la photo, espacement adaptatif */}
             {ctaLink}
           </motion.div>
         </div>

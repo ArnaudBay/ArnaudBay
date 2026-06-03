@@ -46,6 +46,7 @@ const groups: Group[] = [
       { name: "Firebase", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", href: "https://firebase.google.com" },
       { name: "MySQL", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg", href: "https://www.mysql.com" },
       { name: "PostgreSQL", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", href: "https://www.postgresql.org" },
+      { name: "Sanity", iconSrc: "https://cdn.simpleicons.org/sanity/F03E2F", href: "https://www.sanity.io" },
       { name: "REST API", icon: HardDriveDownload },
     ],
   },
