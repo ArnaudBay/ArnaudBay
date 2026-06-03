@@ -20,21 +20,21 @@ const copy = {
     line: "Je conçois des ",
     highlight: "expériences web & mobile rapides, intuitives et élégantes",
     tail: ".",
-    cta: "Voir mes projets",
+    cta: "En savoir plus sur moi",
   },
   en: {
     role: "FULLSTACK WEB & MOBILE DEVELOPER",
     line: "I build ",
     highlight: "clean, fast, and thoughtful digital products",
     tail: " for web and mobile.",
-    cta: "View my projects",
+    cta: "More about me",
   },
 };
 
 const Hero = ({ language }: { language: SiteLanguage }) => {
   const ctaLink = (
     <Link
-      to="/projects"
+      to="/about"
       className="group inline-flex items-center gap-2 border-b border-b-foreground/40 pb-1 text-xs font-bold uppercase tracking-[0.24em] text-foreground transition-all duration-200 hover:gap-3 hover:border-b-foreground"
     >
       <span>{copy[language].cta}</span>

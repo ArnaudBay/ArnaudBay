@@ -33,6 +33,7 @@ const groups: Group[] = [
       { name: "React.js", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", href: "https://react.dev" },
       { name: "Next.js", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", invert: true, href: "https://nextjs.org" },
       { name: "Tailwind", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", href: "https://tailwindcss.com" },
+      { name: "TanStack", iconSrc: "https://avatars.githubusercontent.com/u/72518640", href: "https://tanstack.com" },
     ],
   },
   {
@@ -44,6 +45,7 @@ const groups: Group[] = [
       { name: "Express.js", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", invert: true, href: "https://expressjs.com" },
       { name: "Firebase", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", href: "https://firebase.google.com" },
       { name: "MySQL", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg", href: "https://www.mysql.com" },
+      { name: "PostgreSQL", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", href: "https://www.postgresql.org" },
       { name: "REST API", icon: HardDriveDownload },
     ],
   },
@@ -67,6 +69,10 @@ const groups: Group[] = [
       { name: "GitHub", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", invert: true, href: "https://github.com" },
       { name: "Vite.js", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg", href: "https://vitejs.dev" },
       { name: "VS Code", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", href: "https://code.visualstudio.com" },
+      { name: "Vercel", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg", invert: true, href: "https://vercel.com" },
+      { name: "Docker", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", href: "https://www.docker.com" },
+      { name: "Railway", iconSrc: "https://cdn.simpleicons.org/railway/000000", invert: true, href: "https://railway.app" },
+      { name: "Cloudflare", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg", href: "https://www.cloudflare.com" },
     ],
   },
   {
