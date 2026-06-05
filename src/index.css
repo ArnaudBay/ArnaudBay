@@ -151,12 +151,13 @@
   }
 
   .orbit-shell {
-    @apply relative mx-auto flex h-[250px] w-[250px] items-center justify-center sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px];
+    @apply relative mx-auto flex h-[250px] w-[250px] items-center justify-center sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px] lg:h-[320px] lg:w-[320px];
   }
 
   .orbit-shell::before {
     content: "";
-    @apply absolute inset-0 rounded-full border-2 border-foreground;
+    @apply absolute inset-0 rounded-full border-4;
+    border-color: #9c6a45;
   }
 
   .icon-invert {

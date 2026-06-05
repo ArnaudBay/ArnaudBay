@@ -45,7 +45,7 @@ const portableComponents = {
       <h3 className="mb-3 mt-10 text-xl text-foreground sm:text-2xl">{children}</h3>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-8 border-l-2 border-foreground/30 pl-5 text-base italic text-foreground/80">
+      <blockquote className="my-8 border-l-2 border-foreground/30 pl-5 text-base text-foreground/80">
         {children}
       </blockquote>
     ),
@@ -64,7 +64,7 @@ const portableComponents = {
   },
   marks: {
     strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>,
-    em: ({ children }) => <em className="italic">{children}</em>,
+    em: ({ children }) => <em className="not-italic">{children}</em>,
     link: ({ children, value }) => {
       const href = value?.href || "#";
       const external = /^https?:\/\//.test(href);

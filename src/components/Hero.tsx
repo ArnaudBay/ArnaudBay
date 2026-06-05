@@ -51,7 +51,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
             <motion.h1 variants={fadeUp} className="mb-6 text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] xl:text-[96px]">Arnaud Bayalé</motion.h1>
             <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
               {copy[language].line}
-              <span className="italic text-foreground">{copy[language].highlight}</span>
+              <span className="text-foreground">{copy[language].highlight}</span>
               {copy[language].tail}
             </motion.p>
             <motion.div variants={staggerContainer} className="mt-8 flex items-center gap-5 sm:mt-10">
@@ -70,7 +70,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
                 alt="Arnaud portrait"
                 width={340}
                 height={340}
-                className="h-[250px] w-[250px] rounded-full border-2 border-foreground object-cover sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px]"
+                className="h-[250px] w-[250px] rounded-full border-4 border-[#9c6a45] object-cover sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px] lg:h-[320px] lg:w-[320px]"
               />
             </div>
             {/* Lien sous la photo, espacement adaptatif */}
