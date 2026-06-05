@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
 import type { SiteLanguage, SiteTheme } from "./Layout";
@@ -126,7 +126,10 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             </div>
 
             <button type="button" onClick={() => setOpen(true)} className="flex items-center justify-center p-1 text-foreground lg:hidden" aria-label="Open menu">
-              <Menu size={28} />
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="3" y1="15" x2="21" y2="15" />
+              </svg>
             </button>
           </div>
         </div>

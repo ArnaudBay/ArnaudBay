@@ -6,7 +6,7 @@ import { fadeUp, staggerContainer } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
 import { useSeo } from "../utils/seo";
 import { readingTime } from "../utils/readingTime";
-import { sanityClient } from "../sanity/client";
+import { sanityClient, urlFor } from "../sanity/client";
 import { BLOG_POSTS_QUERY } from "../sanity/queries";
 
 const labels = {
@@ -147,6 +147,14 @@ const Blog = () => {
                         })
                       : "";
                     const isExternal = Boolean(post.url);
+                    const thumb = post.coverImage
+                      ? urlFor(post.coverImage)
+                          ?.width(160)
+                          .height(160)
+                          .fit("crop")
+                          .auto("format")
+                          .url()
+                      : null;
 
                     const meta = (
                       <>
@@ -192,6 +200,20 @@ const Blog = () => {
                       </>
                     );
 
+                    const inner = (
+                      <>
+                        {thumb ? (
+                          <img
+                            src={thumb}
+                            alt={title}
+                            loading="lazy"
+                            className="h-16 w-16 shrink-0 rounded-md border border-border object-cover sm:h-20 sm:w-20"
+                          />
+                        ) : null}
+                        <div className="min-w-0 flex-1">{meta}</div>
+                      </>
+                    );
+
                     return (
                       <motion.li key={post.slug} variants={fadeUp}>
                         {isExternal ? (
@@ -199,13 +221,16 @@ const Blog = () => {
                             href={post.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="group block py-6"
+                            className="group flex items-start gap-4 py-6 sm:gap-5"
                           >
-                            {meta}
+                            {inner}
                           </a>
                         ) : (
-                          <Link to={`/blog/${post.slug}`} className="group block py-6">
-                            {meta}
+                          <Link
+                            to={`/blog/${post.slug}`}
+                            className="group flex items-start gap-4 py-6 sm:gap-5"
+                          >
+                            {inner}
                           </Link>
                         )}
                       </motion.li>

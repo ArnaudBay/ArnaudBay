@@ -26,9 +26,9 @@
   }
 
   .light {
-    --background: 36 22% 94%;
+    --background: 36 10% 95%;
     --foreground: 0 0% 8%;
-    --card: 36 22% 94%;
+    --card: 36 10% 95%;
     --card-foreground: 0 0% 8%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
@@ -157,20 +157,6 @@
   .orbit-shell::before {
     content: "";
     @apply absolute inset-0 rounded-full border-2 border-foreground;
-  }
-
-  .orbit-dot-ring {
-    @apply absolute inset-[-14px] animate-orbit rounded-full;
-  }
-
-  .orbit-dot-ring::after {
-    content: "";
-    @apply absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-foreground;
-    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.14);
-  }
-
-  .light .orbit-dot-ring::after {
-    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.1);
   }
 
   .icon-invert {

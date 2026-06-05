@@ -48,7 +48,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
         <div className="grid items-center gap-10 sm:gap-16 lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.p variants={fadeUp} className="tag-label mb-4 sm:mb-6">{copy[language].role}</motion.p>
-            <motion.h1 variants={fadeUp} className="mb-6 text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] xl:text-[96px]">Arnaud.</motion.h1>
+            <motion.h1 variants={fadeUp} className="mb-6 text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] xl:text-[96px]">Arnaud Bayalé</motion.h1>
             <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
               {copy[language].line}
               <span className="italic text-foreground">{copy[language].highlight}</span>
@@ -65,13 +65,12 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
 
           <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-6 sm:gap-8 lg:items-end">
             <div className="orbit-shell">
-              <div className="orbit-dot-ring" />
               <img
                 src={heroPortrait}
                 alt="Arnaud portrait"
                 width={340}
                 height={340}
-                className="h-[250px] w-[250px] rounded-full border-2 border-foreground object-cover grayscale sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px]"
+                className="h-[250px] w-[250px] rounded-full border-2 border-foreground object-cover sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px]"
               />
             </div>
             {/* Lien sous la photo, espacement adaptatif */}

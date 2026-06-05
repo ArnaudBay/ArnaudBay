@@ -254,7 +254,7 @@ const BlogPost = () => {
                       <img
                         src={src}
                         alt={post.coverImage?.alt || title}
-                        className="mb-12 w-full border border-border"
+                        className="mb-12 max-h-[260px] w-full rounded-md border border-border object-cover"
                       />
                     );
                   })()
