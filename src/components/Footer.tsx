@@ -4,11 +4,9 @@ import type { SiteLanguage } from "./Layout";
 const copy = {
   fr: {
     by: "Par Arnaud BAYALE | Portfolio",
-    copyright: "\u00a9 2023-2025 Arnaud BAYALE",
   },
   en: {
     by: "By Arnaud BAYALE | Portfolio",
-    copyright: "\u00a9 2023-2025 Arnaud BAYALE",
   },
 };
 
@@ -20,7 +18,12 @@ const links = [
   { label: "WhatsApp", icon: WhatsappIcon, href: "https://wa.me/23672151688" },
 ];
 
-const Footer = ({ language }: { language: SiteLanguage }) => (
+const Footer = ({ language }: { language: SiteLanguage }) => {
+  const startYear = 2023;
+  const currentYear = new Date().getFullYear();
+  const years = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
+
+  return (
   <footer className="mt-16 border-t border-border py-8 sm:mt-24">
     <div className="page-container space-y-6">
       <div className="flex flex-col justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">
@@ -34,9 +37,10 @@ const Footer = ({ language }: { language: SiteLanguage }) => (
           ))}
         </div>
       </div>
-      <p className="text-center text-[11px] text-muted-foreground">{copy[language].copyright}</p>
+      <p className="text-center text-[11px] text-muted-foreground">{`© ${years} Arnaud BAYALE`}</p>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

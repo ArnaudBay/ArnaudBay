@@ -19,15 +19,15 @@ const copy = {
     role: "DÉVELOPPEUR FULLSTACK WEB & MOBILE",
     line: "Je conçois des ",
     highlight: "expériences web & mobile rapides, intuitives et élégantes",
-    tail: ".",
-    cta: "En savoir plus sur moi",
+    tail: ", de la première idée jusqu'au déploiement.",
+    cta: "Plus",
   },
   en: {
     role: "FULLSTACK WEB & MOBILE DEVELOPER",
     line: "I build ",
     highlight: "clean, fast, and thoughtful digital products",
-    tail: " for web and mobile.",
-    cta: "More about me",
+    tail: " for web and mobile, from the first idea to deployment.",
+    cta: "More",
   },
 };
 
@@ -54,16 +54,17 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
               <span className="text-foreground">{copy[language].highlight}</span>
               {copy[language].tail}
             </motion.p>
-            <motion.div variants={staggerContainer} className="mt-8 flex items-center gap-5 sm:mt-10">
+            <motion.div variants={staggerContainer} className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-5 sm:mt-6">
               {socials.map(({ icon: Icon, href, label }) => (
                 <motion.a key={label} variants={fadeUp} href={href} target="_blank" rel="noreferrer" aria-label={label} className="text-foreground transition-colors hover:opacity-75">
                   <Icon size={24} />
                 </motion.a>
               ))}
+              <motion.div variants={fadeUp}>{ctaLink}</motion.div>
             </motion.div>
           </motion.div>
 
-          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-6 sm:gap-8 lg:items-end">
+          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-6 sm:gap-8 lg:mt-6 lg:items-end">
             <div className="orbit-shell">
               <img
                 src={heroPortrait}
@@ -73,8 +74,6 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
                 className="h-[250px] w-[250px] rounded-full border-4 border-[#9c6a45] object-cover sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px] lg:h-[320px] lg:w-[320px]"
               />
             </div>
-            {/* Lien sous la photo, espacement adaptatif */}
-            {ctaLink}
           </motion.div>
         </div>
       </div>
