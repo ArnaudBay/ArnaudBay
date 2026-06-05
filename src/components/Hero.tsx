@@ -60,7 +60,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
                   <Icon size={24} />
                 </motion.a>
               ))}
-              <motion.div variants={fadeUp}>{ctaLink}</motion.div>
+              <motion.div variants={fadeUp} className="lg:ml-6">{ctaLink}</motion.div>
             </motion.div>
           </motion.div>
 
