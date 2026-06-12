@@ -124,7 +124,7 @@ const TechStack = ({ language }: { language: SiteLanguage }) => {
               </motion.h3>
               <motion.div
                 variants={staggerContainer}
-                className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-4"
+                className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
               >
                 {group.items.map(({ name, iconSrc, icon: Icon, invert, href }) => (
                   <motion.div
