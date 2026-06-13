@@ -49,16 +49,10 @@ Mon stack principal tourne autour de **React**, **Next.js**, **TypeScript** et *
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/figma/ffffff" /><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/git/ffffff" /><img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="48"/></picture> |
 | Figma | Git |
 
----
-
----
-
----
-
----
 
 
-## 💬 Ce que je recherche
+
+## Ce que je recherche
 
 Je suis ouvert à des missions freelance, des collaborations sérieuses sur des produits web ou mobile, et des opportunités en front-end, fullstack ou mobile. Si tu cherches un développeur capable de construire une interface moderne ou une application web/mobile avec soin, [on peut échanger](https://arnaudbayale.vercel.app).
 
