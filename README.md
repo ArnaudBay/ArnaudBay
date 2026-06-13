@@ -1,4 +1,4 @@
-<h1>Salut, je suis Arnaud 👋🏾 👨🏾‍💻</h1>
+<h1>Arnaud Bayalé 👨🏾‍💻</h1>
 
 Je suis un développeur web et mobile fullstack passionné par la création d'interfaces claires, d'applications performantes et d'expériences digitales qui ont un vrai impact. J'aime construire des produits numériques modernes, utiles et bien exécutés — aussi bien pour le web que pour le mobile. Mon approche mélange sensibilité produit, exigence visuelle et attention à la qualité technique pour transformer une idée en solution concrète.
 
