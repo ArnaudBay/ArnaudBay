@@ -7,93 +7,49 @@ Mon stack principal tourne autour de **React**, **Next.js**, **TypeScript** et *
 
 ## 🛠️ Stack principale
 
-<table>
-  <tr>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/react/ffffff" />
-      <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">React</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/next.js/ffffff" />
-      <img src="https://cdn.simpleicons.org/next.js/000000" alt="Next.js" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Next.js</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/typescript/ffffff" />
-      <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">TypeScript</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/javascript/ffffff" />
-      <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">JavaScript</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/tailwindcss/ffffff" />
-      <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Tailwind CSS</div></td>
-  </tr>
-  <tr>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/vite/ffffff" />
-      <img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Vite</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/flutter/ffffff" />
-      <img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Flutter</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/dart/ffffff" />
-      <img src="https://cdn.simpleicons.org/dart/0175C2" alt="Dart" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Dart</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/node.js/ffffff" />
-      <img src="https://cdn.simpleicons.org/node.js/339933" alt="Node.js" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Node.js</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/express/ffffff" />
-      <img src="https://cdn.simpleicons.org/express/000000" alt="Express" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Express</div></td>
-  </tr>
-  <tr>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/go/ffffff" />
-      <img src="https://cdn.simpleicons.org/go/00ADD8" alt="Go" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Go</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/docker/ffffff" />
-      <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Docker</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/postgresql/ffffff" />
-      <img src="https://cdn.simpleicons.org/postgresql/336791" alt="PostgreSQL" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">PostgreSQL</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/firebase/ffffff" />
-      <img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Firebase</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/sanity/ffffff" />
-      <img src="https://cdn.simpleicons.org/sanity/FF006E" alt="Sanity" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Sanity</div></td>
-  </tr>
-  <tr>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/railway/ffffff" />
-      <img src="https://cdn.simpleicons.org/railway/000000" alt="Railway" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Railway</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/mysql/ffffff" />
-      <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">MySQL</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/git/ffffff" />
-      <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Git</div></td>
-    <td align="center" style="padding:12px"><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/figma/ffffff" />
-      <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" width="48" />
-    </picture><div style="font-size:12px;margin-top:6px">Figma</div></td>
-    <td></td>
-  </tr>
-</table>
+### Web
+
+| React | Next.js | TypeScript | JavaScript | Tailwind | Vite |
+|:-----:|:------:|:----------:|:----------:|:--------:|:----:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/react/ffffff" /><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/next.js/ffffff" /><img src="https://cdn.simpleicons.org/next.js/000000" alt="Next.js" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/typescript/ffffff" /><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/javascript/ffffff" /><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/tailwindcss/ffffff" /><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/vite/ffffff" /><img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="48"/></picture> |
+| React | Next.js | TypeScript | JavaScript | Tailwind | Vite |
+
+### Backend
+
+| Node.js | Express | Go | Docker |
+|:------:|:------:|:--:|:-----:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/node.js/ffffff" /><img src="https://cdn.simpleicons.org/node.js/339933" alt="Node.js" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/express/ffffff" /><img src="https://cdn.simpleicons.org/express/000000" alt="Express" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/go/ffffff" /><img src="https://cdn.simpleicons.org/go/00ADD8" alt="Go" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/docker/ffffff" /><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="48"/></picture> |
+| Node.js | Express | Go | Docker |
+
+### Mobile
+
+| Flutter | Dart |
+|:------:|:----:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/flutter/ffffff" /><img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/dart/ffffff" /><img src="https://cdn.simpleicons.org/dart/0175C2" alt="Dart" width="48"/></picture> |
+| Flutter | Dart |
+
+### Databases
+
+| PostgreSQL | MySQL | Sanity |
+|:---------:|:----:|:-----:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/postgresql/ffffff" /><img src="https://cdn.simpleicons.org/postgresql/336791" alt="PostgreSQL" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/mysql/ffffff" /><img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/sanity/ffffff" /><img src="https://cdn.simpleicons.org/sanity/FF006E" alt="Sanity" width="48"/></picture> |
+| PostgreSQL | MySQL | Sanity |
+
+### DevOps / Deployment
+
+| Railway | Firebase | GitHub |
+|:------:|:--------:|:-----:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/railway/ffffff" /><img src="https://cdn.simpleicons.org/railway/000000" alt="Railway" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/firebase/ffffff" /><img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/ffffff" /><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="48"/></picture> |
+| Railway | Firebase | GitHub |
+
+### Outils & Design
+
+| Figma | Git |
+|:----:|:---:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/figma/ffffff" /><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" width="48"/></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/git/ffffff" /><img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="48"/></picture> |
+| Figma | Git |
+
+---
 
 ---
 
