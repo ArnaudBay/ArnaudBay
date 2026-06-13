@@ -4,58 +4,20 @@ Je suis un développeur web et mobile fullstack passionné par la création d'in
 
 Mon stack principal tourne autour de **React**, **Next.js**, **TypeScript** et **Flutter** pour le mobile. J'interviens sur des projets de la conception de l'interface jusqu'à l'implémentation, avec une préférence pour les produits bien pensés, bien structurés et agréables à utiliser.
 
-<h2>Retrouve-moi sur le web 🌎 :</h2>
-
-- 🌐 Portfolio & projets sur <a href="https://arnaudbayale.vercel.app">arnaudbayale.vercel.app</a>
-- 💼 Disponible en freelance, collaboration ou opportunités front-end / fullstack / mobile
-- 📱 Applications web et mobiles avec une attention forte au détail et à l'expérience utilisateur
-
-<h2>Me contacter 📬 :</h2>
-
-<ul>
-  <li>💼 LinkedIn : <a href="https://www.linkedin.com/in/arnaud-bayalé-57a35b2b9">Arnaud BAYALE</a></li>
-  <li>🐦 X : <a href="https://x.com/Arnaud_GYL">@Arnaud_GYL</a></li>
-  <li>📸 Instagram : <a href="https://www.instagram.com/arnaud_bayale">@arnaud_bayale</a></li>
-  <li>📧 Email : <a href="mailto:arnaud@gmail.com">arnaud@gmail.com</a></li>
-</ul>
-
----
 
 ## 🛠️ Stack principale
 
 ### Web
-![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Next.js](https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![Vite](https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+<img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="40" /> <img src="https://cdn.simpleicons.org/next.js/000000" alt="Next.js" width="40" /> <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="40" /> <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="40" /> <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="40" /> <img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="40" />
 
 ### Mobile
-![Flutter](https://img.shields.io/badge/-Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
+<img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" width="40" /> <img src="https://cdn.simpleicons.org/dart/0175C2" alt="Dart" width="40" />
 
 ### Back-end & outils
-![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white)
-![Firebase](https://img.shields.io/badge/-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
-![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
-![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white)
-![Figma](https://img.shields.io/badge/-Figma-F24E1E?style=flat-square&logo=figma&logoColor=white)
+<img src="https://cdn.simpleicons.org/node.js/339933" alt="Node.js" width="40" /> <img src="https://cdn.simpleicons.org/express/000000" alt="Express" width="40" /> <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="40" /> <img src="https://cdn.simpleicons.org/postgresql/336791" alt="PostgreSQL" width="40" /> <img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase" width="40" /> <img src="https://cdn.simpleicons.org/sanity/FF006E" alt="Sanity" width="40" /> <img src="https://cdn.simpleicons.org/railway/000000" alt="Railway" width="40" /> <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" width="40" /> <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="40" /> <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" width="40" />
 
 ---
 
-## 🚀 Projets mis en avant
-
-**[Landing page Bonne Nouvelle](https://github.com/ArnaudBay)** — Landing page pour une application de cantiques chrétiens.
-
-**[Motte Africaine](https://github.com/ArnaudBay)** — Site de vente de produits électroniques.
-
-**[Mon École Pro](https://github.com/ArnaudBay)** — Application mobile de suivi scolaire.
-
-**[M Nour Site](https://github.com/ArnaudBay)** — Site vitrine d'une entreprise spécialisée dans le mobilier de bureau.
-
----
 
 ## 💬 Ce que je recherche
 
