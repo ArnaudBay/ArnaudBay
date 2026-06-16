@@ -80,11 +80,11 @@ const Blog = () => {
     >
       <div className="page-container">
         <div className="mb-12 flex items-center justify-between gap-4">
-          <span className="editorial-cross">+</span>
+          <span className="editorial-cross"></span>
           <h2 className="text-center text-4xl text-foreground md:text-5xl">
             {labels[language].title} <span className="text-foreground">/</span>
           </h2>
-          <span className="editorial-cross">+</span>
+          <span className="editorial-cross"></span>
         </div>
         <p className="section-copy mx-auto mb-16 max-w-2xl text-center">
           {labels[language].subtitle}
