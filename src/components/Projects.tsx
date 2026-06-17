@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
+import { fadeUp, staggerContainer } from "../utils/animations";
 import type { SiteLanguage } from "./Layout";
 import { sanityClient } from "../sanity/client";
 import { urlFor } from "../sanity/client";
@@ -11,6 +11,10 @@ const labels = {
   fr: { title: "Projets", loading: "Chargement…", empty: "Aucun projet pour l'instant." },
   en: { title: "Projects", loading: "Loading…", empty: "No projects yet." },
 };
+
+// Pastille discrète, dans l'esprit de titusgahissy (fond léger, casse normale).
+const tagClass =
+  "rounded bg-foreground/[0.06] px-2 py-0.5 text-[11px] font-medium text-foreground/65";
 
 const Projects = ({ language }: { language: SiteLanguage }) => {
   const [projects, setProjects] = useState<ProjectDoc[] | null>(null);
@@ -46,42 +50,81 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
         ) : projects.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground">{labels[language].empty}</p>
         ) : (
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <motion.ol
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col divide-y divide-border border-y border-border"
+          >
             {projects.map((project, index) => {
               const description = language === "fr" ? project.descriptionFr : project.descriptionEn;
               const badge = language === "fr" ? project.badgeFr : project.badgeEn;
               const imageUrl = project.image
-                ? urlFor(project.image)?.width(1200).height(750).fit("crop").url() ?? "/placeholder.svg"
+                ? urlFor(project.image)?.width(480).height(320).fit("crop").url() ?? "/placeholder.svg"
                 : "/placeholder.svg";
-              return (
-                <motion.article key={project._id} variants={fadeScale} className="group overflow-hidden border border-border bg-card hover:border-foreground/40">
-                  <div className="aspect-[16/10] overflow-hidden border-b border-border bg-muted">
-                    <img src={imageUrl} alt={project.title} className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0" loading="lazy" width={1200} height={600} />
-                  </div>
-                  <div className="space-y-3 p-4 sm:space-y-4 sm:p-5">
+
+              const techs = project.techs || [];
+
+              const inner = (
+                <div className="group flex items-start gap-4 py-6 sm:gap-6 sm:py-7">
+                  <span className="pt-1.5 text-xs font-medium tabular-nums text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <img
+                    src={imageUrl}
+                    alt={project.title}
+                    loading="lazy"
+                    width={480}
+                    height={320}
+                    className="hidden h-[68px] w-[104px] shrink-0 rounded-md border border-border object-cover grayscale transition duration-500 group-hover:grayscale-0 sm:block"
+                  />
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="mb-1.5 font-body text-[11px] uppercase tracking-[0.2em] text-foreground/60 sm:mb-2">{String(index + 1).padStart(2, "0")}</p>
-                        <h3 className="text-xl text-foreground sm:text-2xl">{project.title}</h3>
+                      <h3 className="flex items-center gap-1.5 text-xl text-foreground transition-colors group-hover:text-foreground/65 sm:text-2xl">
+                        <span className="min-w-0">{project.title}</span>
+                        {project.url ? (
+                          <ArrowUpRight
+                            size={18}
+                            className="mt-0.5 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          />
+                        ) : null}
+                      </h3>
+                      <div className="hidden shrink-0 flex-wrap items-center justify-end gap-1.5 sm:flex sm:max-w-[46%]">
+                        {techs.slice(0, 4).map((tech) => (
+                          <span key={tech} className={tagClass}>{tech}</span>
+                        ))}
+                        {badge ? <span className={tagClass}>{badge}</span> : null}
                       </div>
-                      {project.url ? (
-                        <a href={project.url} target="_blank" rel="noreferrer" aria-label={project.title} className="mt-1 text-foreground/80 transition-all duration-200 group-hover:translate-x-1 group-hover:text-foreground/75">
-                          <ArrowUpRight size={18} />
-                        </a>
-                      ) : (
-                        <span className="mt-1 text-foreground/35"><ArrowUpRight size={18} /></span>
-                      )}
                     </div>
-                    <p className="text-sm leading-7 text-muted-foreground">{description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {(project.techs || []).map((tech) => <span key={tech} className="project-tag">{tech}</span>)}
-                      {badge ? <span className="project-tag">{badge}</span> : null}
+                    {description ? (
+                      <p className="mt-2 max-w-2xl text-sm leading-7 text-muted-foreground line-clamp-2">
+                        {description}
+                      </p>
+                    ) : null}
+                    <div className="mt-3 flex flex-wrap gap-1.5 sm:hidden">
+                      {techs.slice(0, 3).map((tech) => (
+                        <span key={tech} className={tagClass}>{tech}</span>
+                      ))}
+                      {badge ? <span className={tagClass}>{badge}</span> : null}
                     </div>
                   </div>
-                </motion.article>
+                </div>
+              );
+
+              return (
+                <motion.li key={project._id} variants={fadeUp}>
+                  {project.url ? (
+                    <a href={project.url} target="_blank" rel="noreferrer" aria-label={project.title}>
+                      {inner}
+                    </a>
+                  ) : (
+                    inner
+                  )}
+                </motion.li>
               );
             })}
-          </motion.div>
+          </motion.ol>
         )}
       </div>
     </motion.section>

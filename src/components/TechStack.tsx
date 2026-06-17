@@ -89,7 +89,11 @@ const groups: Group[] = [
 const labels = { fr: "Stacks & Outils", en: "Stacks & Tools" };
 
 const TechStack = ({ language }: { language: SiteLanguage }) => {
-  const visibleGroups = groups.filter((g) => g.items.length > 0);
+  // Catégories non vides, rangées par nombre d'outils décroissant pour
+  // équilibrer les deux colonnes (les plus fournies en haut).
+  const visibleGroups = groups
+    .filter((g) => g.items.length > 0)
+    .sort((a, b) => b.items.length - a.items.length);
 
   return (
     <motion.section
@@ -108,52 +112,67 @@ const TechStack = ({ language }: { language: SiteLanguage }) => {
           </h2>
           <span className="editorial-cross"></span>
         </div>
-        <div className="grid gap-12 md:grid-cols-2">
-          {visibleGroups.map((group) => (
+        <div className="border-b border-border">
+          {visibleGroups.map((group, index) => (
             <motion.div
               key={group.key}
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-5"
+              className="grid gap-5 border-t border-border py-8 md:grid-cols-[180px_minmax(0,1fr)] md:gap-10 md:py-10 lg:grid-cols-[220px_minmax(0,1fr)]"
             >
-              <motion.h3 variants={fadeUp} className="font-heading text-3xl text-foreground">
-                {language === "fr" ? group.titleFr : group.titleEn}{" "}
-                <span className="text-foreground">()</span>
-              </motion.h3>
-              <motion.div
-                variants={staggerContainer}
-                className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-              >
-                {group.items.map(({ name, iconSrc, icon: Icon, invert, href }) => (
-                  <motion.div
-                    key={name}
-                    variants={fadeScale}
-                    className="group flex min-h-[100px] flex-col items-center justify-center gap-2 rounded-sm border border-border bg-card px-2 py-3 sm:min-h-[124px] sm:gap-3 sm:px-3 sm:py-4 hover:border-foreground/40"
-                  >
-                    {href ? (
-                      <a href={href} target="_blank" rel="noreferrer" className="flex h-10 items-center justify-center sm:h-12">
-                        {iconSrc ? (
-                          <img src={iconSrc} alt={name} className={`h-8 w-8 object-contain sm:h-10 sm:w-10${invert ? " icon-invert" : ""}`} loading="lazy" width={40} height={40} />
-                        ) : Icon ? (
-                          <Icon size={32} className="text-foreground sm:h-9 sm:w-9" />
-                        ) : null}
-                      </a>
-                    ) : (
-                      <div className="flex h-10 items-center justify-center sm:h-12">
-                        {iconSrc ? (
-                          <img src={iconSrc} alt={name} className={`h-8 w-8 object-contain sm:h-10 sm:w-10${invert ? " icon-invert" : ""}`} loading="lazy" width={40} height={40} />
-                        ) : Icon ? (
-                          <Icon size={32} className="text-foreground sm:h-9 sm:w-9" />
-                        ) : null}
-                      </div>
-                    )}
-                    <span className="text-center text-[11px] text-foreground/90 group-hover:text-foreground/75 sm:text-[12px]">
-                      {name}
-                    </span>
-                  </motion.div>
-                ))}
+              <motion.div variants={fadeUp} className="md:pt-1">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-heading text-2xl text-foreground/25 sm:text-3xl">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-heading text-2xl text-foreground sm:text-3xl">
+                    {language === "fr" ? group.titleFr : group.titleEn}
+                  </h3>
+                </div>
+                <p className="tag-label mt-2 md:mt-3">
+                  {group.items.length}{" "}
+                  {language === "fr"
+                    ? group.items.length > 1 ? "outils" : "outil"
+                    : group.items.length > 1 ? "tools" : "tool"}
+                </p>
+              </motion.div>
+
+              <motion.div variants={staggerContainer} className="flex flex-wrap gap-3 sm:gap-4">
+                {group.items.map(({ name, iconSrc, icon: Icon, invert, href }) => {
+                  const icon = iconSrc ? (
+                    <img
+                      src={iconSrc}
+                      alt={name}
+                      className={`h-8 w-8 object-contain sm:h-9 sm:w-9${invert ? " icon-invert" : ""}`}
+                      loading="lazy"
+                      width={40}
+                      height={40}
+                    />
+                  ) : Icon ? (
+                    <Icon size={30} className="text-foreground" />
+                  ) : null;
+
+                  return (
+                    <motion.div
+                      key={name}
+                      variants={fadeScale}
+                      className="group flex min-h-[92px] w-[84px] flex-col items-center justify-center gap-2 rounded-sm border border-border bg-card px-2 py-3 hover:border-foreground/40 sm:min-h-[104px] sm:w-[100px] sm:gap-2.5 sm:py-4"
+                    >
+                      {href ? (
+                        <a href={href} target="_blank" rel="noreferrer" className="flex h-9 items-center justify-center sm:h-10">
+                          {icon}
+                        </a>
+                      ) : (
+                        <div className="flex h-9 items-center justify-center sm:h-10">{icon}</div>
+                      )}
+                      <span className="text-center text-[11px] text-foreground/90 group-hover:text-foreground/75 sm:text-[12px]">
+                        {name}
+                      </span>
+                    </motion.div>
+                  );
+                })}
               </motion.div>
             </motion.div>
           ))}

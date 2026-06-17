@@ -1,14 +1,4 @@
 import { GithubIcon, InstagramIcon, LinkedinIcon, MailIcon, WhatsappIcon } from "./SocialIcons";
-import type { SiteLanguage } from "./Layout";
-
-const copy = {
-  fr: {
-    by: "Par Arnaud BAYALE | Portfolio",
-  },
-  en: {
-    by: "By Arnaud BAYALE | Portfolio",
-  },
-};
 
 const links = [
   { label: "Email", icon: MailIcon, href: "mailto:arnaud@gmail.com" },
@@ -18,26 +8,22 @@ const links = [
   { label: "WhatsApp", icon: WhatsappIcon, href: "https://wa.me/23672151688" },
 ];
 
-const Footer = ({ language }: { language: SiteLanguage }) => {
+const Footer = () => {
   const startYear = 2023;
   const currentYear = new Date().getFullYear();
   const years = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
 
   return (
-  <footer className="mt-16 border-t border-border py-8 sm:mt-24">
-    <div className="page-container space-y-6">
-      <div className="flex flex-col justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">
-        <p>{copy[language].by}</p>
-        <div className="flex flex-wrap items-center gap-4">
-          {links.map(({ label, icon: Icon, href }) => (
-            <a key={label} href={href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-foreground">
-              <Icon size={14} />
-              <span>{label}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-      <p className="text-center text-[11px] text-muted-foreground">{`© ${years} Arnaud BAYALE`}</p>
+  <footer className="mt-24 border-t border-border py-8">
+    <div className="page-container flex flex-col items-center gap-5 text-xs text-muted-foreground sm:flex-row sm:justify-between sm:gap-4 sm:text-sm">
+      <p>{`© ${years} Arnaud Bayalé`}</p>
+      <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        {links.map(({ label, href }) => (
+          <a key={label} href={href} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#9c6a45]">
+            {label}
+          </a>
+        ))}
+      </nav>
     </div>
   </footer>
   );

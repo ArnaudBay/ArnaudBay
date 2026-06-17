@@ -71,8 +71,8 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
 
   const headerBg = scrolled
     ? theme === "dark"
-      ? "bg-black/50 backdrop-blur-md border-b border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
-      : "bg-[#F3EDE4]/80 backdrop-blur-md border-b border-black/8 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+      ? "bg-white/[0.03] backdrop-blur-2xl backdrop-saturate-150 border-b border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+      : "bg-white/30 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
     : "border-b border-transparent";
 
   const renderLink = (link: NavLinkDef, className: string) => (

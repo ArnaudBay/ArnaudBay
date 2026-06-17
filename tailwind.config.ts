@@ -40,8 +40,8 @@ export default {
         },
       },
       fontFamily: {
-        heading: ["Gabarito", "sans-serif"],
-        body: ["Gabarito", "sans-serif"],
+        heading: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       keyframes: {
         orbit: {

@@ -46,7 +46,7 @@ const Layout = () => {
       <main>
         <Outlet context={{ language, theme } satisfies LayoutCtx} />
       </main>
-      <Footer language={language} />
+      <Footer />
     </div>
   );
 };

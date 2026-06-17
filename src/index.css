@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 0%;
-    --foreground: 0 0% 96%;
+    --foreground: 0 0% 90%;
     --card: 0 0% 4%;
     --card-foreground: 0 0% 96%;
     --popover: 0 0% 4%;
@@ -26,25 +26,26 @@
   }
 
   .light {
-    --background: 36 10% 95%;
-    --foreground: 0 0% 8%;
-    --card: 36 10% 95%;
-    --card-foreground: 0 0% 8%;
+    /* Blanc neutre façon titusgahissy (fond #fafafa, cartes blanc pur). */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
-    --primary: 0 0% 8%;
+    --popover-foreground: 0 0% 14%;
+    --primary: 0 0% 14%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 94%;
-    --secondary-foreground: 0 0% 8%;
-    --muted: 0 0% 94%;
-    --muted-foreground: 220 9% 40%;
-    --accent: 0 0% 8%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 14%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 14%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 0 0% 8%;
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+    --ring: 0 0% 14%;
   }
 
   * {
@@ -60,7 +61,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     margin: 0;
-    font-family: "Gabarito", sans-serif;
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
     cursor: default;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
@@ -81,7 +82,7 @@
   h5,
   h6 {
     margin: 0;
-    font-family: "Gabarito", sans-serif;
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
     letter-spacing: -0.02em;
   }
@@ -109,7 +110,7 @@
   }
 
   .page-container {
-    @apply mx-auto w-full max-w-[1200px] px-6 md:px-8 lg:max-w-[1300px] xl:max-w-[1280px];
+    @apply mx-auto w-full px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 min-[1920px]:px-40 min-[2560px]:px-64;
   }
 
   .section-block {
@@ -122,7 +123,7 @@
 
   .editorial-cross {
     @apply text-3xl leading-none text-[#333333] md:text-4xl;
-    font-family: "Gabarito", sans-serif;
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
   }
 
   .nav-link {

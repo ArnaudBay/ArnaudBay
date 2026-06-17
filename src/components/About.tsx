@@ -26,8 +26,8 @@ const About = ({ language }: { language: SiteLanguage }) => (
     viewport={{ once: true }}
     className="section-block"
   >
-    <div className="page-container max-w-5xl">
-      <div className="grid items-center gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-12">
+    <div className="page-container">
+      <div className="grid items-center gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-12 xl:gap-20">
         <motion.div
           variants={fadeScale}
           className="flex justify-center md:justify-start"
@@ -46,7 +46,7 @@ const About = ({ language }: { language: SiteLanguage }) => (
           <h2 className="mb-6 text-4xl leading-tight text-foreground md:text-[44px]">
             {copy[language].title}
           </h2>
-          <div className="space-y-4">
+          <div className="max-w-2xl space-y-4">
             <p className="section-copy">{copy[language].body1}</p>
             <p className="section-copy">{copy[language].body2}</p>
           </div>
