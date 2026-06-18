@@ -158,7 +158,7 @@ const TechStack = ({ language }: { language: SiteLanguage }) => {
                     <motion.div
                       key={name}
                       variants={fadeScale}
-                      className="group flex min-h-[92px] w-[84px] flex-col items-center justify-center gap-2 rounded-sm border border-border bg-card px-2 py-3 hover:border-foreground/40 sm:min-h-[104px] sm:w-[100px] sm:gap-2.5 sm:py-4"
+                      className="group flex min-h-[92px] w-[84px] flex-col items-center justify-center gap-2 rounded-2xl border border-border bg-card px-2 py-3 hover:border-foreground/40 sm:min-h-[104px] sm:w-[100px] sm:gap-2.5 sm:py-4"
                     >
                       {href ? (
                         <a href={href} target="_blank" rel="noreferrer" className="flex h-9 items-center justify-center sm:h-10">
