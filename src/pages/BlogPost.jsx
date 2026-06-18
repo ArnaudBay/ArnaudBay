@@ -65,7 +65,7 @@ const linkify = (children) =>
 const portableComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="mb-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">{linkify(children)}</p>
+      <p className="mb-6 text-left text-[15px] leading-8 text-muted-foreground sm:text-justify sm:text-base">{linkify(children)}</p>
     ),
     h2: ({ children }) => (
       <h2 className="mb-4 mt-12 text-2xl text-foreground sm:text-3xl">{children}</h2>
@@ -81,12 +81,12 @@ const portableComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-6 list-disc space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
+      <ul className="mb-6 list-disc space-y-2 pl-6 text-left text-[15px] leading-8 text-muted-foreground sm:text-justify sm:text-base">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-6 list-decimal space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
+      <ol className="mb-6 list-decimal space-y-2 pl-6 text-left text-[15px] leading-8 text-muted-foreground sm:text-justify sm:text-base">
         {children}
       </ol>
     ),
@@ -238,7 +238,7 @@ const BlogPost = () => {
     <section className="section-block pt-28 sm:pt-36">
       <div className="page-container">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-10">{backLink}</div>
+          <div className="mb-10 flex justify-center sm:justify-start">{backLink}</div>
 
           {post === undefined ? (
             <p className="text-sm text-muted-foreground">{t.loading}</p>

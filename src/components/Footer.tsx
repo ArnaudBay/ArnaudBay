@@ -9,14 +9,12 @@ const links = [
 ];
 
 const Footer = () => {
-  const startYear = 2023;
   const currentYear = new Date().getFullYear();
-  const years = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
 
   return (
   <footer className="mt-24 border-t border-border py-8">
     <div className="page-container flex flex-col items-center gap-5 text-xs text-muted-foreground sm:flex-row sm:justify-between sm:gap-4 sm:text-sm">
-      <p>{`© ${years} Arnaud Bayalé`}</p>
+      <p>{`© ${currentYear} Arnaud Bayalé.`}</p>
       <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
         {links.map(({ label, href }) => (
           <a key={label} href={href} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#9c6a45]">
