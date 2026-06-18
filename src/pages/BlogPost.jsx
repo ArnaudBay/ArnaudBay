@@ -32,11 +32,40 @@ const labels = {
   },
 };
 
+const linkClass =
+  "text-foreground underline underline-offset-4 decoration-foreground/40 hover:decoration-foreground";
+
+// Sépare les URL collées en texte brut (Sanity ne les rend pas cliquables
+// sans annotation) tout en laissant passer les vrais liens annotés.
+// Gère les URL complètes (http(s)://…) et les URL préfixées par « www. ».
+const URL_RE = /((?:https?:\/\/|www\.)[^\s]+)/gi;
+const linkify = (children) =>
+  (Array.isArray(children) ? children : [children]).flatMap((child, i) => {
+    if (typeof child !== "string") return [child];
+    return child.split(URL_RE).map((part, j) => {
+      if (!/^(?:https?:\/\/|www\.)/i.test(part)) return part;
+      // Conserve la ponctuation finale hors du lien (« …url. » → lien + « . »).
+      const m = part.match(/^(.*?)([.,;:!?)\]]*)$/);
+      const label = m ? m[1] : part;
+      const trail = m ? m[2] : "";
+      // « www. » sans protocole → on préfixe https:// pour un href valide.
+      const href = /^www\./i.test(label) ? `https://${label}` : label;
+      return (
+        <span key={`${i}-${j}`}>
+          <a href={href} target="_blank" rel="noreferrer" className={linkClass}>
+            {label}
+          </a>
+          {trail}
+        </span>
+      );
+    });
+  });
+
 /** Composants de rendu PortableText alignés sur l'esthétique éditoriale du site. */
 const portableComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="mb-6 text-[15px] leading-8 text-muted-foreground sm:text-base">{children}</p>
+      <p className="mb-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">{linkify(children)}</p>
     ),
     h2: ({ children }) => (
       <h2 className="mb-4 mt-12 text-2xl text-foreground sm:text-3xl">{children}</h2>
@@ -46,22 +75,23 @@ const portableComponents = {
     ),
     blockquote: ({ children }) => (
       <blockquote className="my-8 border-l-2 border-foreground/30 pl-5 text-base text-foreground/80">
-        {children}
+        {linkify(children)}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-6 list-disc space-y-2 pl-6 text-[15px] leading-8 text-muted-foreground sm:text-base">
+      <ul className="mb-6 list-disc space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-6 list-decimal space-y-2 pl-6 text-[15px] leading-8 text-muted-foreground sm:text-base">
+      <ol className="mb-6 list-decimal space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
         {children}
       </ol>
     ),
   },
+  listItem: ({ children }) => <li>{linkify(children)}</li>,
   marks: {
     strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>,
     em: ({ children }) => <em className="not-italic">{children}</em>,
@@ -72,7 +102,7 @@ const portableComponents = {
         <a
           href={href}
           {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-          className="text-foreground underline underline-offset-4 decoration-foreground/40 hover:decoration-foreground"
+          className={linkClass}
         >
           {children}
         </a>
@@ -254,7 +284,7 @@ const BlogPost = () => {
                       <img
                         src={src}
                         alt={post.coverImage?.alt || title}
-                        className="mb-12 max-h-[260px] w-full rounded-md border border-border object-cover"
+                        className="mb-12 h-auto w-full rounded-md border border-border object-contain"
                       />
                     );
                   })()

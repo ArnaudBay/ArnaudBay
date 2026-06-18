@@ -97,7 +97,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
             <Logo theme={theme} />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-5 lg:flex">
             {links.map((link) => renderLink(link, "nav-link"))}
           </nav>
 
