@@ -238,7 +238,7 @@ const BlogPost = () => {
     <section className="section-block pt-28 sm:pt-36">
       <div className="page-container">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-10 flex justify-center sm:justify-start">{backLink}</div>
+          <div className="mb-10 flex justify-center">{backLink}</div>
 
           {post === undefined ? (
             <p className="text-sm text-muted-foreground">{t.loading}</p>

@@ -116,14 +116,17 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
               aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
               className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:text-foreground lg:hidden"
             >
-              {language === "fr" ? "EN" : "FR"}
+              {language === "fr" ? "FR" : "EN"}
             </button>
 
-            <div className="hidden items-center gap-3 lg:flex">
-              <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
-              <span className="text-foreground/30">/</span>
-              <button type="button" onClick={() => onLanguageChange("en")} className={language === "en" ? "nav-link text-foreground" : "nav-link"}>EN</button>
-            </div>
+            <button
+              type="button"
+              onClick={() => onLanguageChange(language === "fr" ? "en" : "fr")}
+              aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
+              className="nav-link hidden lg:block"
+            >
+              {language === "fr" ? "FR" : "EN"}
+            </button>
 
             <button type="button" onClick={() => setOpen(true)} className="flex items-center justify-center p-1 text-foreground lg:hidden" aria-label="Open menu">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -179,9 +182,14 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
                 variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
                 className="mt-4 flex items-center gap-4"
               >
-                <button type="button" onClick={() => onLanguageChange("fr")} className={language === "fr" ? "nav-link text-foreground" : "nav-link"}>FR</button>
-                <span className="text-foreground/30">/</span>
-                <button type="button" onClick={() => onLanguageChange("en")} className={language === "en" ? "nav-link text-foreground" : "nav-link"}>EN</button>
+                <button
+                  type="button"
+                  onClick={() => onLanguageChange(language === "fr" ? "en" : "fr")}
+                  aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
+                  className="nav-link text-foreground"
+                >
+                  {language === "fr" ? "FR" : "EN"}
+                </button>
               </motion.div>
               <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} className="mt-8 flex items-center gap-5">
                 {socials.map(({ icon: Icon, href, label }) => (
