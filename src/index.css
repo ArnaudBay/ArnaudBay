@@ -171,8 +171,8 @@
   .theme-toggle {
     display: block;
     flex-shrink: 0;
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     border-radius: 9999px;
     border: none;
     padding: 0;
@@ -180,6 +180,13 @@
     cursor: pointer;
     transition: none;
     -webkit-tap-highlight-color: transparent;
+  }
+  /* Sur desktop seulement, on réduit le bouton ; mobile garde 24px. */
+  @media (min-width: 1024px) {
+    .theme-toggle {
+      width: 21px;
+      height: 21px;
+    }
   }
   .theme-toggle:focus {
     outline: none;
