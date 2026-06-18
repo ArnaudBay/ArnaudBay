@@ -171,8 +171,8 @@
   .theme-toggle {
     display: block;
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
     border-radius: 9999px;
     border: none;
     padding: 0;
