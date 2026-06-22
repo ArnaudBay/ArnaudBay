@@ -73,7 +73,7 @@ const linkify = (children) =>
 const portableComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="mb-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">{linkify(children)}</p>
+      <p className="mb-6 hyphens-auto break-words text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">{linkify(children)}</p>
     ),
     h2: ({ children }) => (
       <h2 className="mb-4 mt-12 text-2xl text-foreground sm:text-3xl">{children}</h2>
@@ -89,12 +89,12 @@ const portableComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-6 list-disc space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
+      <ul className="mb-6 list-disc space-y-2 pl-6 hyphens-auto break-words text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-6 list-decimal space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
+      <ol className="mb-6 list-decimal space-y-2 pl-6 hyphens-auto break-words text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
         {children}
       </ol>
     ),
@@ -307,7 +307,7 @@ const BlogPost = () => {
           {post === undefined ? null : post === null ? (
             <p className="text-sm text-muted-foreground">{t.notFound}</p>
           ) : (
-            <motion.article variants={fadeUp} initial="hidden" animate="visible">
+            <motion.article lang={language} variants={fadeUp} initial="hidden" animate="visible">
               <header className="mb-10">
                 <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-foreground/40">
                   {post.category ? <span className="project-tag">{post.category}</span> : null}
