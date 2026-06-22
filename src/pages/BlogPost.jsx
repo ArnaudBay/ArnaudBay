@@ -6,7 +6,8 @@ import { PortableText } from "@portabletext/react";
 import { fadeUp } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
 import { readingTime } from "../utils/readingTime";
-import { sanityClient, urlFor } from "../sanity/client";
+import { urlFor } from "../sanity/client";
+import { useSanityQuery } from "../sanity/useSanityQuery";
 import { BLOG_POST_BY_SLUG_QUERY } from "../sanity/queries";
 
 const labels = {
@@ -111,7 +112,7 @@ const portableComponents = {
   },
   types: {
     image: ({ value }) => {
-      const src = urlFor(value)?.width(1400).fit("max").auto("format").url();
+      const src = urlFor(value)?.width(1200).fit("max").auto("format").quality(75).url();
       if (!src) return null;
       return (
         <figure className="my-10">
@@ -135,27 +136,12 @@ const portableComponents = {
 const BlogPost = () => {
   const language = useLanguage();
   const { slug } = useParams();
-  const [post, setPost] = useState(undefined); // undefined = chargement, null = introuvable
+  // undefined = chargement, null = introuvable
+  const post = useSanityQuery(BLOG_POST_BY_SLUG_QUERY, { slug }, null);
   const [views, setViews] = useState(0);
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
   const [likePending, setLikePending] = useState(false);
-
-  useEffect(() => {
-    if (!sanityClient) {
-      setPost(null);
-      return;
-    }
-    let mounted = true;
-    setPost(undefined);
-    sanityClient
-      .fetch(BLOG_POST_BY_SLUG_QUERY, { slug })
-      .then((data) => mounted && setPost(data || null))
-      .catch(() => mounted && setPost(null));
-    return () => {
-      mounted = false;
-    };
-  }, [slug]);
 
   // Initialise les compteurs et l'état "aimé" à partir des données chargées.
   useEffect(() => {
@@ -240,9 +226,7 @@ const BlogPost = () => {
         <div className="mx-auto max-w-3xl">
           <div className="mb-10 flex justify-center">{backLink}</div>
 
-          {post === undefined ? (
-            <p className="text-sm text-muted-foreground">{t.loading}</p>
-          ) : post === null ? (
+          {post === undefined ? null : post === null ? (
             <p className="text-sm text-muted-foreground">{t.notFound}</p>
           ) : (
             <motion.article variants={fadeUp} initial="hidden" animate="visible">
@@ -275,15 +259,17 @@ const BlogPost = () => {
               {post.coverImage
                 ? (() => {
                     const src = urlFor(post.coverImage)
-                      ?.width(1600)
+                      ?.width(1200)
                       .fit("max")
                       .auto("format")
+                      .quality(75)
                       .url();
                     if (!src) return null;
                     return (
                       <img
                         src={src}
                         alt={post.coverImage?.alt || title}
+                        loading="lazy"
                         className="mb-12 h-auto w-full rounded-md border border-border object-contain"
                       />
                     );

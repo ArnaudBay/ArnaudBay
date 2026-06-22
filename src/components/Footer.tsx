@@ -12,8 +12,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-  <footer className="mt-24 border-t border-border py-8">
-    <div className="page-container flex flex-col items-center gap-5 text-xs text-muted-foreground sm:flex-row sm:justify-between sm:gap-4 sm:text-sm">
+  <footer className="pt-24 pb-6 text-xs text-muted-foreground md:text-sm">
+    <div className="mx-auto flex max-w-2xl flex-col items-center justify-between gap-5 px-6 sm:flex-row sm:gap-4 md:px-8 xl:px-0">
       <p>{`© ${currentYear} Arnaud Bayalé.`}</p>
       <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
         {links.map(({ label, href }) => (

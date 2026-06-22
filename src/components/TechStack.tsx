@@ -33,7 +33,7 @@ const groups: Group[] = [
       { name: "React.js", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", href: "https://react.dev" },
       { name: "Next.js", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", invert: true, href: "https://nextjs.org" },
       { name: "Tailwind", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", href: "https://tailwindcss.com" },
-      { name: "TanStack", iconSrc: "https://avatars.githubusercontent.com/u/72518640", href: "https://tanstack.com" },
+      { name: "TanStack", iconSrc: "https://avatars.githubusercontent.com/u/72518640?s=80", href: "https://tanstack.com" },
     ],
   },
   {

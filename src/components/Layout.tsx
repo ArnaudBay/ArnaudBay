@@ -43,7 +43,7 @@ const Layout = () => {
         theme={theme}
         onThemeToggle={toggleTheme}
       />
-      <main>
+      <main className="flex-1">
         <Outlet context={{ language, theme } satisfies LayoutCtx} />
       </main>
       <Footer />

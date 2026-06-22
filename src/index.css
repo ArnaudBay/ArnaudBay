@@ -105,7 +105,7 @@
 
 @layer components {
   .page-shell {
-    @apply min-h-screen bg-background text-foreground;
+    @apply flex min-h-screen flex-col bg-background text-foreground;
     overflow-x: hidden;
   }
 

@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { fadeUp, staggerContainer } from "../utils/animations";
 import type { SiteLanguage } from "./Layout";
-import { sanityClient } from "../sanity/client";
 import { urlFor } from "../sanity/client";
+import { useSanityQuery } from "../sanity/useSanityQuery";
 import { PROJECTS_QUERY, type ProjectDoc } from "../sanity/queries";
 
 const labels = {
@@ -17,22 +16,7 @@ const tagClass =
   "rounded bg-foreground/[0.06] px-2 py-0.5 text-[11px] font-medium text-foreground/65";
 
 const Projects = ({ language }: { language: SiteLanguage }) => {
-  const [projects, setProjects] = useState<ProjectDoc[] | null>(null);
-
-  useEffect(() => {
-    if (!sanityClient) {
-      setProjects([]);
-      return;
-    }
-    let mounted = true;
-    sanityClient
-      .fetch<ProjectDoc[]>(PROJECTS_QUERY)
-      .then((data) => mounted && setProjects(data || []))
-      .catch(() => mounted && setProjects([]));
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const projects = useSanityQuery<ProjectDoc[]>(PROJECTS_QUERY, {}, []);
 
   return (
     <motion.section id="projects" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-block">
@@ -45,9 +29,7 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
           <span className="editorial-cross"></span>
         </div>
 
-        {projects === null ? (
-          <p className="text-center text-sm text-muted-foreground">{labels[language].loading}</p>
-        ) : projects.length === 0 ? (
+        {projects === undefined ? null : projects.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground">{labels[language].empty}</p>
         ) : (
           <motion.ol
@@ -61,7 +43,7 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
               const description = language === "fr" ? project.descriptionFr : project.descriptionEn;
               const badge = language === "fr" ? project.badgeFr : project.badgeEn;
               const imageUrl = project.image
-                ? urlFor(project.image)?.width(480).height(320).fit("crop").url() ?? "/placeholder.svg"
+                ? urlFor(project.image)?.width(320).height(208).fit("crop").auto("format").quality(70).url() ?? "/placeholder.svg"
                 : "/placeholder.svg";
 
               const techs = project.techs || [];

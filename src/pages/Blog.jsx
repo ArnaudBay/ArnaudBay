@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Eye, Heart } from "lucide-react";
@@ -6,7 +6,8 @@ import { fadeUp, staggerContainer } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
 import { useSeo } from "../utils/seo";
 import { readingTime } from "../utils/readingTime";
-import { sanityClient, urlFor } from "../sanity/client";
+import { urlFor } from "../sanity/client";
+import { useSanityQuery } from "../sanity/useSanityQuery";
 import { BLOG_POSTS_QUERY } from "../sanity/queries";
 
 const labels = {
@@ -42,23 +43,8 @@ function groupByYear(posts) {
 const Blog = () => {
   const language = useLanguage();
   useSeo("blog", language);
-  const [posts, setPosts] = useState(null);
+  const posts = useSanityQuery(BLOG_POSTS_QUERY, {}, []);
   const [activeCategory, setActiveCategory] = useState("all");
-
-  useEffect(() => {
-    if (!sanityClient) {
-      setPosts([]);
-      return;
-    }
-    let mounted = true;
-    sanityClient
-      .fetch(BLOG_POSTS_QUERY)
-      .then((data) => mounted && setPosts(data || []))
-      .catch(() => mounted && setPosts([]));
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   const locale = language === "fr" ? "fr-FR" : "en-US";
 
@@ -90,9 +76,7 @@ const Blog = () => {
           {labels[language].subtitle}
         </p>
 
-        {posts === null ? (
-          <p className="text-center text-sm text-muted-foreground">{labels[language].loading}</p>
-        ) : posts.length === 0 ? (
+        {posts === undefined ? null : safePosts.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground">{labels[language].empty}</p>
         ) : (
           <>
@@ -153,6 +137,7 @@ const Blog = () => {
                           .height(160)
                           .fit("crop")
                           .auto("format")
+                          .quality(70)
                           .url()
                       : null;
 
