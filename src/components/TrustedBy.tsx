@@ -22,11 +22,11 @@ const TrustedBy = ({ language }: { language: SiteLanguage }) => {
   >
     <div className="page-container">
       <div className="mb-12 flex items-center justify-between gap-4">
-        <span className="editorial-cross">+</span>
+        <span className="editorial-cross"></span>
         <h2 className="text-center text-4xl text-foreground md:text-5xl">
-          {labels[language].title} <span className="text-foreground">/</span>
+          {labels[language].title} <span className="text-foreground"></span>
         </h2>
-        <span className="editorial-cross">+</span>
+        <span className="editorial-cross"></span>
       </div>
 
       <motion.div
