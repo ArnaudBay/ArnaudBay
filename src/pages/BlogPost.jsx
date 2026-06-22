@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Heart } from "lucide-react";
+import { ArrowLeft, Check, Heart, Link2, Share2 } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 import { fadeUp } from "../utils/animations";
 import { useLanguage } from "../components/Layout";
@@ -9,6 +9,7 @@ import { readingTime } from "../utils/readingTime";
 import { urlFor } from "../sanity/client";
 import { useSanityQuery } from "../sanity/useSanityQuery";
 import { BLOG_POST_BY_SLUG_QUERY } from "../sanity/queries";
+import { FacebookIcon, LinkedinIcon, MailIcon, TelegramIcon, WhatsappIcon, XIcon } from "../components/SocialIcons";
 
 const labels = {
   fr: {
@@ -20,6 +21,9 @@ const labels = {
     views: "vues",
     like: "J'aime",
     likePrompt: "Cet article vous a plu ?",
+    share: "Partager",
+    copied: "Lien copié",
+    copyLink: "Copier le lien",
   },
   en: {
     back: "Back to all posts",
@@ -30,6 +34,9 @@ const labels = {
     views: "views",
     like: "Like",
     likePrompt: "Enjoyed this post?",
+    share: "Share",
+    copied: "Link copied",
+    copyLink: "Copy link",
   },
 };
 
@@ -66,7 +73,7 @@ const linkify = (children) =>
 const portableComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="mb-6 text-left text-[15px] leading-8 text-muted-foreground sm:text-justify sm:text-base">{linkify(children)}</p>
+      <p className="mb-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">{linkify(children)}</p>
     ),
     h2: ({ children }) => (
       <h2 className="mb-4 mt-12 text-2xl text-foreground sm:text-3xl">{children}</h2>
@@ -82,12 +89,12 @@ const portableComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-6 list-disc space-y-2 pl-6 text-left text-[15px] leading-8 text-muted-foreground sm:text-justify sm:text-base">
+      <ul className="mb-6 list-disc space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-6 list-decimal space-y-2 pl-6 text-left text-[15px] leading-8 text-muted-foreground sm:text-justify sm:text-base">
+      <ol className="mb-6 list-decimal space-y-2 pl-6 text-justify text-[15px] leading-8 text-muted-foreground sm:text-base">
         {children}
       </ol>
     ),
@@ -142,6 +149,19 @@ const BlogPost = () => {
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
   const [likePending, setLikePending] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
+  const shareRef = useRef(null);
+
+  // Ferme le menu de partage au clic en dehors.
+  useEffect(() => {
+    if (!shareOpen) return;
+    const onDocClick = (e) => {
+      if (shareRef.current && !shareRef.current.contains(e.target)) setShareOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [shareOpen]);
 
   // Initialise les compteurs et l'état "aimé" à partir des données chargées.
   useEffect(() => {
@@ -208,7 +228,65 @@ const BlogPost = () => {
     if (title) document.title = `${title} | Arnaud BAYALE`;
   }, [title]);
 
+  const copyLink = async () => {
+    if (typeof window === "undefined") return;
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // Repli si le presse-papier moderne est indisponible (http, vieux navigateur).
+      const input = document.createElement("textarea");
+      input.value = url;
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand("copy");
+      } catch {
+        // rien à faire
+      }
+      document.body.removeChild(input);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const locale = language === "fr" ? "fr-FR" : "en-US";
+
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareTargets = [
+    {
+      label: "WhatsApp",
+      Icon: WhatsappIcon,
+      href: `https://wa.me/?text=${encodeURIComponent(`${title} ${shareUrl}`)}`,
+    },
+    {
+      label: "X",
+      Icon: XIcon,
+      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`,
+    },
+    {
+      label: "LinkedIn",
+      Icon: LinkedinIcon,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+    },
+    {
+      label: "Facebook",
+      Icon: FacebookIcon,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+    },
+    {
+      label: "Telegram",
+      Icon: TelegramIcon,
+      href: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`,
+    },
+    {
+      label: "Email",
+      Icon: MailIcon,
+      href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}`,
+    },
+  ];
 
   const backLink = (
     <Link
@@ -291,28 +369,82 @@ const BlogPost = () => {
                 <p className="font-body text-[11px] uppercase tracking-[0.2em] text-foreground/50">
                   {t.likePrompt}
                 </p>
-                <button
-                  type="button"
-                  onClick={handleLike}
-                  disabled={likePending}
-                  aria-pressed={liked}
-                  className={`inline-flex items-center gap-2.5 rounded-full border px-6 py-3 text-sm uppercase tracking-[0.16em] transition-all disabled:opacity-60 ${
-                    liked
-                      ? "border-foreground text-foreground"
-                      : "border-border text-foreground/60 hover:border-foreground/50 hover:text-foreground"
-                  }`}
-                >
-                  <Heart
-                    size={18}
-                    className={`shrink-0 transition-transform ${liked ? "scale-110" : ""}`}
-                    style={
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={handleLike}
+                    disabled={likePending}
+                    aria-pressed={liked}
+                    className={`inline-flex items-center gap-2.5 rounded-full border px-6 py-3 text-sm uppercase tracking-[0.16em] transition-all disabled:opacity-60 ${
                       liked
-                        ? { color: "#ef4444", fill: "#ef4444" }
-                        : { fill: "none" }
-                    }
-                  />
-                  <span>{t.like}</span>
-                </button>
+                        ? "border-foreground text-foreground"
+                        : "border-border text-foreground/60 hover:border-foreground/50 hover:text-foreground"
+                    }`}
+                  >
+                    <Heart
+                      size={18}
+                      className={`shrink-0 transition-transform ${liked ? "scale-110" : ""}`}
+                      style={
+                        liked
+                          ? { color: "#ef4444", fill: "#ef4444" }
+                          : { fill: "none" }
+                      }
+                    />
+                    <span>{t.like}</span>
+                  </button>
+
+                  <div className="relative" ref={shareRef}>
+                    <button
+                      type="button"
+                      onClick={() => setShareOpen((o) => !o)}
+                      aria-haspopup="menu"
+                      aria-expanded={shareOpen}
+                      aria-label={t.share}
+                      className="inline-flex items-center gap-2.5 rounded-full border border-border px-6 py-3 text-sm uppercase tracking-[0.16em] text-foreground/60 transition-all hover:border-foreground/50 hover:text-foreground"
+                    >
+                      {copied ? (
+                        <Check size={18} className="shrink-0" />
+                      ) : (
+                        <Share2 size={18} className="shrink-0" />
+                      )}
+                      <span>{copied ? t.copied : t.share}</span>
+                    </button>
+
+                    {shareOpen ? (
+                      <div
+                        role="menu"
+                        className="absolute left-1/2 top-full z-20 mt-2 w-48 -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-card py-1 text-left shadow-lg"
+                      >
+                        {shareTargets.map(({ label, Icon, href }) => (
+                          <a
+                            key={label}
+                            href={href}
+                            target="_blank"
+                            rel="noreferrer"
+                            role="menuitem"
+                            onClick={() => setShareOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm normal-case tracking-normal text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+                          >
+                            <Icon size={16} className="shrink-0" />
+                            <span>{label}</span>
+                          </a>
+                        ))}
+                        <button
+                          type="button"
+                          role="menuitem"
+                          onClick={() => {
+                            copyLink();
+                            setShareOpen(false);
+                          }}
+                          className="flex w-full items-center gap-3 px-4 py-2.5 text-sm normal-case tracking-normal text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+                        >
+                          <Link2 size={16} className="shrink-0" />
+                          <span>{t.copyLink}</span>
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
               </div>
 
               {post.author ? (
