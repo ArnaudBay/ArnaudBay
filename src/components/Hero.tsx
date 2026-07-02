@@ -1,7 +1,6 @@
 ﻿import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import heroPortrait from "../assets/hero-portrait.jpg";
 import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
 import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
 import type { SiteLanguage } from "./Layout";
@@ -43,18 +42,23 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
   );
 
   return (
-    <motion.section id="top" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="pt-28 pb-12 sm:pt-36 sm:pb-16">
+    <motion.section id="top" variants={fadeUp} initial="hidden" animate="visible" className="pt-28 pb-12 sm:pt-36 sm:pb-16">
       <div className="page-container">
-        <div className="grid items-center gap-10 sm:gap-16 lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <motion.p variants={fadeUp} className="tag-label mb-4 sm:mb-6">{copy[language].role}</motion.p>
-            <motion.h1 variants={fadeUp} className="mb-6 text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] xl:text-[96px]">Arnaud Bayalé</motion.h1>
-            <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
+        <div className="grid items-center gap-8 sm:gap-16 lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="order-1 text-center lg:hidden">
+            <motion.p variants={fadeUp} className="tag-label mb-4">{copy[language].role}</motion.p>
+            <motion.h1 variants={fadeUp} className="text-[42px] leading-[0.92] text-foreground sm:text-[56px]">Arnaud Bayalé</motion.h1>
+          </motion.div>
+
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="order-3 text-center lg:order-1 lg:text-left">
+            <motion.p variants={fadeUp} className="tag-label mb-4 hidden sm:mb-6 lg:block">{copy[language].role}</motion.p>
+            <motion.h1 variants={fadeUp} className="mb-6 hidden text-[42px] leading-[0.92] text-foreground sm:mb-8 sm:text-[56px] md:text-[80px] lg:block xl:text-[96px]">Arnaud Bayalé</motion.h1>
+            <motion.p variants={fadeUp} className="mx-auto max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem] lg:mx-0">
               {copy[language].line}
               <span className="text-foreground">{copy[language].highlight}</span>
               {copy[language].tail}
             </motion.p>
-            <motion.div variants={staggerContainer} className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-5 sm:mt-6">
+            <motion.div variants={staggerContainer} className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-5 sm:mt-6 lg:justify-start">
               {socials.map(({ icon: Icon, href, label }) => (
                 <motion.a key={label} variants={fadeUp} href={href} target="_blank" rel="noreferrer" aria-label={label} className="text-foreground transition-colors hover:opacity-75">
                   <Icon size={24} />
@@ -64,16 +68,18 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
             </motion.div>
           </motion.div>
 
-          <motion.div variants={fadeScale} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-6 sm:gap-8 lg:mt-6 lg:items-end">
-            <div className="orbit-shell">
-              <img
-                src={heroPortrait}
-                alt="Arnaud portrait"
-                width={340}
-                height={340}
-                className="h-[250px] w-[250px] rounded-full border-4 border-[#9c6a45] object-cover sm:h-[300px] sm:w-[300px] md:h-[360px] md:w-[360px] lg:h-[320px] lg:w-[320px]"
-              />
-            </div>
+          <motion.div variants={fadeScale} initial="hidden" animate="visible" className="relative order-2 flex flex-col items-center gap-6 sm:gap-8 lg:order-2 lg:mt-6 lg:items-end">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9c6a45]/25 blur-[70px] sm:h-[340px] sm:w-[340px] lg:hidden"
+            />
+            <img
+              src="/arn.png"
+              alt="Arnaud portrait"
+              width={340}
+              height={340}
+              className="h-[240px] w-[240px] object-contain sm:h-[280px] sm:w-[280px] md:h-[400px] md:w-[400px] lg:h-[360px] lg:w-[360px]"
+            />
           </motion.div>
         </div>
       </div>
