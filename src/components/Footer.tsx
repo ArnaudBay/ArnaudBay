@@ -1,4 +1,5 @@
 import { GithubIcon, InstagramIcon, LinkedinIcon, MailIcon, WhatsappIcon } from "./SocialIcons";
+import AfricanFrieze from "./AfricanFrieze";
 
 const links = [
   { label: "Email", icon: MailIcon, href: "mailto:arnaud@gmail.com" },
@@ -13,6 +14,9 @@ const Footer = () => {
 
   return (
   <footer className="pt-24 pb-6 text-xs text-muted-foreground md:text-sm">
+    <div className="mx-auto mb-10 max-w-2xl px-6 md:px-8 xl:px-0">
+      <AfricanFrieze className="h-2 w-full text-[#9c6a45] opacity-30" />
+    </div>
     <div className="mx-auto flex max-w-2xl flex-col items-center justify-between gap-5 px-6 sm:flex-row sm:gap-4 md:px-8 xl:px-0">
       <p>{`© ${currentYear} Arnaud Bayalé.`}</p>
       <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">

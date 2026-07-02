@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
+import AfricanFrieze from "./AfricanFrieze";
 import { fadeScale, fadeUp, staggerContainer } from "../utils/animations";
 import type { SiteLanguage } from "./Layout";
 
@@ -23,7 +24,6 @@ const copy = {
     line: "Je conçois des ",
     highlight: "expériences web & mobile rapides, intuitives et élégantes",
     tail: ", de la première idée jusqu'au déploiement.",
-    sub: "Toujours à la recherche de projets ambitieux et de belles collaborations.",
     cta: "Plus",
   },
   en: {
@@ -31,7 +31,6 @@ const copy = {
     line: "I build ",
     highlight: "clean, fast, and thoughtful digital products",
     tail: " for web and mobile, from the first idea to deployment.",
-    sub: "Always looking for ambitious projects and great collaborations.",
     cta: "More",
   },
 };
@@ -50,7 +49,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
   );
 
   const description = (
-    <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
+    <motion.p variants={fadeUp} className="max-w-xl hyphens-auto text-justify text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem] lg:text-left">
       {c.line}
       <span className="text-foreground">{c.highlight}</span>
       {c.tail}
@@ -71,21 +70,12 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
   const glow = (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 scale-110 rounded-full bg-[#9c6a45]/25 blur-[70px]"
+      className="pointer-events-none absolute inset-0 -z-10 scale-110 rounded-full blur-[70px]"
+      style={{
+        background:
+          "radial-gradient(circle at 35% 30%, rgba(201,154,63,0.32), rgba(156,106,69,0.24) 55%, transparent 75%)",
+      }}
     />
-  );
-
-  // Frise africaine discrète (losanges type kente / bogolan)
-  const africanFrieze = (id: string, className: string) => (
-    <svg viewBox="0 0 240 10" preserveAspectRatio="none" className={className} aria-hidden>
-      <defs>
-        <pattern id={id} width="16" height="10" patternUnits="userSpaceOnUse">
-          <path d="M8 1 L14 5 L8 9 L2 5 Z" fill="none" stroke="currentColor" strokeWidth="1" />
-          <circle cx="8" cy="5" r="0.8" fill="currentColor" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} />
-    </svg>
   );
 
   return (
@@ -97,14 +87,14 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
             <motion.p variants={fadeUp} className="tag-label mb-6">{c.role}</motion.p>
             <motion.h1 variants={fadeUp} className="mb-6 text-[80px] leading-[0.92] text-foreground xl:text-[96px]">Arnaud Bayalé</motion.h1>
             <motion.div variants={fadeUp} className="mb-8">
-              {africanFrieze("afroDiamondD", "h-2.5 w-[220px] text-[#9c6a45] opacity-40")}
+              <AfricanFrieze className="h-2.5 w-[220px] text-[#9c6a45] opacity-40" />
             </motion.div>
             {description}
             {renderSocials("lg:ml-6")}
           </motion.div>
           <motion.div variants={fadeScale} initial="hidden" animate="visible" className="-mt-8 flex flex-col items-end gap-3">
             <img src="/arn.png" alt="Arnaud portrait" width={460} height={460} className="h-[460px] w-[460px] object-contain" />
-            {africanFrieze("afroDiamondP", "h-2.5 w-[300px] text-[#9c6a45] opacity-40")}
+            <AfricanFrieze className="h-2.5 w-[300px] text-[#9c6a45] opacity-40" />
           </motion.div>
         </div>
 
@@ -134,12 +124,12 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
               {/* Haut : rôle en surtitre, puis photo + nom */}
               <motion.div variants={staggerContainer} initial="hidden" animate="visible">
                 <motion.p variants={fadeUp} className="tag-label mb-5">{c.role}</motion.p>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-1">
                   <motion.div variants={fadeScale} className="relative shrink-0">
                     {glow}
-                    <img src="/arn.png" alt="Arnaud portrait" width={190} height={190} className="h-[150px] w-[150px] object-contain sm:h-[190px] sm:w-[190px]" />
+                    <img src="/arn.png" alt="Arnaud portrait" width={210} height={210} className="h-[172px] w-[172px] object-contain sm:h-[210px] sm:w-[210px]" />
                   </motion.div>
-                  <motion.h1 variants={fadeUp} className="min-w-0 text-[42px] leading-[0.86] tracking-tight text-foreground sm:text-[56px]">
+                  <motion.h1 variants={fadeUp} className="min-w-0 text-[44px] leading-[0.86] tracking-tight text-foreground sm:text-[58px]">
                     <span className="block">Arnaud</span>
                     <span className="block text-[#9c6a45]">Bayalé</span>
                   </motion.h1>
@@ -148,16 +138,13 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
 
               {/* Touche africaine discrète : frise de losanges (kente / bogolan) */}
               <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mt-8">
-                {africanFrieze("afroDiamondM", "h-2.5 w-full text-[#9c6a45] opacity-40")}
+                <AfricanFrieze className="h-2.5 w-full text-[#9c6a45] opacity-40" />
               </motion.div>
 
               {/* Bas : texte enrichi + réseaux */}
               <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="mt-8 flex flex-1 flex-col">
                 {description}
-                <motion.p variants={fadeUp} className="mt-5 max-w-xl text-lg leading-8 text-foreground/70 sm:text-xl sm:leading-9">
-                  {c.sub}
-                </motion.p>
-                <div className="mt-auto pt-10">
+                <div className="mt-auto pt-8 pb-24">
                   {renderSocials()}
                 </div>
               </motion.div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { fadeUp, staggerContainer } from "../utils/animations";
+import KenteDivider from "./KenteDivider";
 import type { SiteLanguage } from "./Layout";
 import { urlFor } from "../sanity/client";
 import { useSanityQuery } from "../sanity/useSanityQuery";
@@ -21,12 +22,15 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
   return (
     <motion.section id="projects" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-block">
       <div className="page-container">
-        <div className="mb-12 flex items-center justify-between gap-4">
-          <span className="editorial-cross"></span>
-          <h2 className="text-center text-4xl text-foreground md:text-5xl">
-            {labels[language].title} <span className="text-foreground"></span>
-          </h2>
-          <span className="editorial-cross"></span>
+        <div className="mb-12 flex flex-col items-center gap-4">
+          <div className="flex w-full items-center justify-between gap-4">
+            <span className="editorial-cross"></span>
+            <h2 className="text-center text-4xl text-foreground md:text-5xl">
+              {labels[language].title} <span className="text-foreground"></span>
+            </h2>
+            <span className="editorial-cross"></span>
+          </div>
+          <KenteDivider className="h-3 w-[150px] rounded-full opacity-90" />
         </div>
 
         {projects === undefined ? null : projects.length === 0 ? (

@@ -124,7 +124,7 @@ const TechStack = ({ language }: { language: SiteLanguage }) => {
             >
               <motion.div variants={fadeUp} className="md:pt-1">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-heading text-2xl text-foreground/25 sm:text-3xl">
+                  <span className="font-heading text-2xl text-[#9c6a45]/40 sm:text-3xl">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="font-heading text-2xl text-foreground sm:text-3xl">
