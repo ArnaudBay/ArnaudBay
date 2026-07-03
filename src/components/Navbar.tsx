@@ -175,7 +175,7 @@ const Navbar = ({ language, onLanguageChange, theme, onThemeToggle }: Props) => 
                   key={link.to}
                   variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
                 >
-                  {renderLink(link, "font-heading text-3xl text-foreground sm:text-4xl")}
+                  {renderLink(link, "font-heading text-3xl font-bold text-foreground sm:text-4xl")}
                 </motion.div>
               ))}
               <motion.div

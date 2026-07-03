@@ -21,6 +21,7 @@ const socials = [
 const copy = {
   fr: {
     role: "DÉVELOPPEUR FULLSTACK WEB & MOBILE",
+    intro: "Je suis",
     line: "Je conçois des ",
     highlight: "expériences web & mobile rapides, intuitives et élégantes",
     tail: ", de la première idée jusqu'au déploiement.",
@@ -28,6 +29,7 @@ const copy = {
   },
   en: {
     role: "FULLSTACK WEB & MOBILE DEVELOPER",
+    intro: "I'm",
     line: "I build ",
     highlight: "clean, fast, and thoughtful digital products",
     tail: " for web and mobile, from the first idea to deployment.",
@@ -49,7 +51,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
   );
 
   const description = (
-    <motion.p variants={fadeUp} className="max-w-xl hyphens-auto text-justify text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem] lg:text-left">
+    <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
       {c.line}
       <span className="text-foreground">{c.highlight}</span>
       {c.tail}
@@ -85,16 +87,28 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
         <div className="hidden items-center gap-16 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
           <motion.div variants={staggerContainer} initial="hidden" animate="visible">
             <motion.p variants={fadeUp} className="tag-label mb-6">{c.role}</motion.p>
-            <motion.h1 variants={fadeUp} className="mb-6 text-[80px] leading-[0.92] text-foreground xl:text-[96px]">Arnaud Bayalé</motion.h1>
+            <motion.h1 variants={fadeUp} className="mb-6 text-[64px] leading-[0.92] text-foreground xl:text-[80px]">
+              {/* Puces losanges (motif kente) devant "Je suis" */}
+              <span className="mb-3 flex items-center gap-2.5 font-body text-base font-normal uppercase tracking-[0.24em] text-foreground/60">
+                <span aria-hidden className="flex items-center gap-1.5 text-[#9c6a45]">
+                  <span className="h-1.5 w-1.5 rotate-45 bg-current" />
+                  <span className="h-2.5 w-2.5 rotate-45 border border-current" />
+                  <span className="h-1.5 w-1.5 rotate-45 bg-current" />
+                </span>
+                {c.intro}
+              </span>
+              <span className="font-bold">Arnaud </span>
+              <span className="font-bold text-[#9c6a45]">Bayalé</span>
+            </motion.h1>
             <motion.div variants={fadeUp} className="mb-8">
-              <AfricanFrieze className="h-2.5 w-[220px] text-[#9c6a45] opacity-40" />
+              <AfricanFrieze className="h-2.5 w-[220px] text-[#ce5d06] opacity-40" />
             </motion.div>
             {description}
             {renderSocials("lg:ml-6")}
           </motion.div>
           <motion.div variants={fadeScale} initial="hidden" animate="visible" className="-mt-8 flex flex-col items-end gap-3">
             <img src="/arn.png" alt="Arnaud portrait" width={460} height={460} className="h-[460px] w-[460px] object-contain" />
-            <AfricanFrieze className="h-2.5 w-[300px] text-[#9c6a45] opacity-40" />
+            <AfricanFrieze className="h-2.5 w-[300px] text-[#ce5d06] opacity-40" />
           </motion.div>
         </div>
 
@@ -124,14 +138,23 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
               {/* Haut : rôle en surtitre, puis photo + nom */}
               <motion.div variants={staggerContainer} initial="hidden" animate="visible">
                 <motion.p variants={fadeUp} className="tag-label mb-5">{c.role}</motion.p>
-                <div className="flex items-center gap-1">
+                <div className="flex items-end gap-0 md:gap-4">
                   <motion.div variants={fadeScale} className="relative shrink-0">
                     {glow}
-                    <img src="/arn.png" alt="Arnaud portrait" width={210} height={210} className="h-[172px] w-[172px] object-contain sm:h-[210px] sm:w-[210px]" />
+                    <img src="/arn.png" alt="Arnaud portrait" width={240} height={240} className="h-[210px] w-[210px] object-contain sm:h-[250px] sm:w-[250px] md:h-[340px] md:w-[340px]" />
                   </motion.div>
-                  <motion.h1 variants={fadeUp} className="min-w-0 text-[44px] leading-[0.86] tracking-tight text-foreground sm:text-[58px]">
-                    <span className="block">Arnaud</span>
-                    <span className="block text-[#9c6a45]">Bayalé</span>
+                  <motion.h1 variants={fadeUp} className="-ml-2 min-w-0 flex-1 pb-3 text-[clamp(2rem,10vw,3.5rem)] leading-[0.9] tracking-tight text-foreground md:-ml-0 md:pb-6 md:text-[5rem]">
+                    {/* Puces losanges (motif kente) devant "Je suis" */}
+                    <span className="-mt-1 mb-1 flex items-center gap-2 font-body text-sm font-normal uppercase tracking-[0.24em] text-foreground/60 md:mb-3 md:text-base">
+                      <span aria-hidden className="flex items-center gap-1 text-[#9c6a45] md:gap-1.5">
+                        <span className="h-1.5 w-1.5 rotate-45 bg-current md:h-2 md:w-2" />
+                        <span className="h-2 w-2 rotate-45 border border-current md:h-2.5 md:w-2.5" />
+                        <span className="h-1.5 w-1.5 rotate-45 bg-current md:h-2 md:w-2" />
+                      </span>
+                      {c.intro}
+                    </span>
+                    <span className="block font-bold">Arnaud</span>
+                    <span className="block font-bold text-[#9c6a45]">Bayalé</span>
                   </motion.h1>
                 </div>
               </motion.div>

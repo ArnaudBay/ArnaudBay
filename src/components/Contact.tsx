@@ -14,7 +14,7 @@ const copy = {
     title: "Collaborons.",
     subtitle: "Parlons de votre projet web, d'une collaboration ou simplement d'une idée à construire.",
     nameLabel: "Nom complet",
-    namePlaceholder: "Ex : Jean Dupont",
+    namePlaceholder: "Ex : gaspard Yadoro",
     emailLabel: "Adresse e-mail",
     emailPlaceholder: "vous@exemple.com",
     messageLabel: "Votre message",
