@@ -39,7 +39,7 @@ const Logo = ({ theme }: { theme: SiteTheme }) => (
   <img
     src={theme === "dark" ? LOGO_DARK : LOGO_LIGHT}
     alt="Arnaud BAYALE"
-    className="h-12 w-auto origin-left scale-x-90 sm:h-14"
+    className="h-12 w-auto origin-left scale-x-90"
     width={56}
     height={56}
   />

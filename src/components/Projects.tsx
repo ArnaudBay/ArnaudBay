@@ -86,7 +86,7 @@ const Projects = ({ language }: { language: SiteLanguage }) => {
                       ) : null}
                     </h3>
                     {description ? (
-                      <p className="mt-1.5 text-[13px] leading-6 text-muted-foreground line-clamp-2">
+                      <p className="mt-1.5 text-[13px] font-medium leading-6 text-foreground/80 line-clamp-2">
                         {description}
                       </p>
                     ) : null}

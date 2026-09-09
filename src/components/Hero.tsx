@@ -51,7 +51,7 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
   );
 
   const description = (
-    <motion.p variants={fadeUp} className="max-w-xl text-lg leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
+    <motion.p variants={fadeUp} className="max-w-xl text-lg font-medium leading-9 text-foreground/88 sm:text-xl sm:leading-10 md:text-2xl md:leading-[2.6rem]">
       {c.line}
       <span className="text-foreground">{c.highlight}</span>
       {c.tail}
@@ -86,7 +86,6 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
         {/* ---------- DESKTOP (lg et +) ---------- */}
         <div className="hidden items-center gap-16 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)]">
           <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.p variants={fadeUp} className="tag-label mb-6">{c.role}</motion.p>
             <motion.h1 variants={fadeUp} className="mb-6 text-[64px] leading-[0.92] text-foreground xl:text-[80px]">
               {/* Puces losanges (motif kente) devant "Je suis" */}
               <span className="mb-3 flex items-center gap-2.5 font-body text-base font-normal uppercase tracking-[0.24em] text-foreground/60">
@@ -117,7 +116,6 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
           {MOBILE_HERO === "editorial" && (
             <div className="flex flex-col gap-8">
               <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-                <motion.p variants={fadeUp} className="tag-label mb-4">{c.role}</motion.p>
                 <motion.h1 variants={fadeUp} className="text-[56px] leading-[0.92] text-foreground sm:text-[68px]">Arnaud Bayalé</motion.h1>
               </motion.div>
               <motion.div variants={fadeScale} initial="hidden" animate="visible" className="-mt-2 flex justify-end">
@@ -137,7 +135,6 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
             <div className="flex min-h-[inherit] flex-1 flex-col">
               {/* Haut : rôle en surtitre, puis photo + nom */}
               <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-                <motion.p variants={fadeUp} className="tag-label mb-5">{c.role}</motion.p>
                 <div className="flex items-end gap-0 md:gap-4">
                   <motion.div variants={fadeScale} className="relative shrink-0">
                     {glow}
@@ -179,7 +176,6 @@ const Hero = ({ language }: { language: SiteLanguage }) => {
               <motion.div variants={fadeScale} initial="hidden" animate="visible" className="relative overflow-hidden rounded-3xl">
                 <img src="/arn.png" alt="Arnaud portrait" className="h-[420px] w-full object-cover object-top sm:h-[480px]" />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/70 to-transparent p-6 pt-24">
-                  <p className="tag-label mb-2">{c.role}</p>
                   <h1 className="text-[44px] leading-[0.95] text-foreground sm:text-[56px]">Arnaud Bayalé</h1>
                 </div>
               </motion.div>

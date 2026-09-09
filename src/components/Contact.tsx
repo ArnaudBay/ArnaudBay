@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon, XIcon } from "./SocialIcons";
-import KenteDivider from "./KenteDivider";
 import { fadeUp } from "../utils/animations";
 import type { SiteLanguage } from "./Layout";
 
@@ -96,8 +95,7 @@ const Contact = ({ language }: { language: SiteLanguage }) => {
       <div className="page-container">
         <div className="mx-auto max-w-[600px] text-center">
           <h2 className="mb-6 text-5xl leading-none text-foreground md:text-7xl">{copy[language].title}</h2>
-          <p className="mx-auto max-w-xl text-sm leading-7 text-muted-foreground md:text-base">{copy[language].subtitle}</p>
-          <KenteDivider className="mx-auto mt-6 h-3 w-[150px] rounded-full opacity-90" />
+          <p className="mx-auto max-w-xl text-sm font-medium leading-7 text-foreground/80 md:text-base">{copy[language].subtitle}</p>
           <form className="mt-10 space-y-6 rounded-xl border border-border bg-card p-6 text-left md:mt-12 md:p-8" onSubmit={handleSubmit} noValidate>
             <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
 

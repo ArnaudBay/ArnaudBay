@@ -12,9 +12,15 @@ const Layout = () => {
   const [language, setLanguage] = useState<SiteLanguage>("fr");
   const [theme, setTheme] = useState<SiteTheme>(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as SiteTheme) || "dark";
+      // Force le mode clair au premier chargement (reset unique des anciennes préférences).
+      if (!localStorage.getItem("theme-default-light")) {
+        localStorage.setItem("theme-default-light", "1");
+        localStorage.setItem("theme", "light");
+        return "light";
+      }
+      return (localStorage.getItem("theme") as SiteTheme) || "light";
     }
-    return "dark";
+    return "light";
   });
 
   const { pathname } = useLocation();
